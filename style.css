@@ -171,12 +171,6 @@ main {
   height: 250px;
 }
 
-.carousel-inner {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
-  height: 100%;
-}
-
 .carousel-item {
   min-width: 100%;
   position: relative;
@@ -251,10 +245,13 @@ main {
   top: 10px;
   left: 10px;
   right: 10px;
-  background: rgba(255,255,255,0.9);
+  background: rgba(255,255,255,0.95);
   padding: 1rem;
   border-radius: 8px;
   z-index: 10;
+  max-width: 60%;
+  max-height: 70vh;
+  overflow-y: auto;
 }
 
 .lightbox-info h3 {
@@ -302,13 +299,8 @@ main {
   background: rgba(255,255,255,1);
 }
 
-.prev {
-  left: 10px;
-}
-
-.next {
-  right: 10px;
-}
+.prev { left: 10px; }
+.next { right: 10px; }
 
 .lightbox.active {
   display: flex;
@@ -417,7 +409,9 @@ footer {
 
   .lightbox-info {
     width: 100%;
+    max-width: none;
     margin-bottom: 0.5rem;
+    max-height: 30vh;
   }
 
   .lightbox-img {
