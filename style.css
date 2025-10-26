@@ -214,14 +214,14 @@ main {
   font-weight: bold;
 }
 
-/* Lightbox */
+/* Lightbox minimalista */
 .lightbox {
   display: none;
   position: fixed;
   top: 0;
   left: 0;
-  width: 50%;
-  height: 50%;
+  width: 100%;
+  height: 100%;
   background: rgba(0,0,0,0.95);
   z-index: 1000;
   justify-content: center;
@@ -229,78 +229,39 @@ main {
   padding: 1rem;
 }
 
-.lightbox-content {
-  position: relative;
-  width: 90%;
-  max-width: 500px;
-  max-height: 85vh;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem;
-  overflow-y: auto;
-}
-
-.lightbox-info {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  right: 10px;
-  background: rgba(255,255,255,0.95);
-  padding: 1rem;
-  border-radius: 8px;
-  z-index: 10;
-  max-width: 60%;
-  max-height: 70vh;
-  overflow-y: auto;
-}
-
-.lightbox-info h3 {
-  margin: 0 0 0.5rem 0;
-  font-size: 1.2rem;
-  color: #d1477a;
-}
-
-.lightbox-info p {
-  margin: 0.3rem 0;
-  font-size: 0.9rem;
-  color: #444;
-}
-
-.lightbox-img {
-  max-width: 90%;
-  max-height: 60vh;
-  object-fit: contain;
-  border: 3px solid white;
-  border-radius: 8px;
-  z-index: 5;
-  margin: 0 auto;
-  display: block;
-}
-
-.lightbox-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(255,255,255,0.8);
-  color: #333;
-  border: none;
-  padding: 1rem;
-  border-radius: 50%;
-  font-size: 2rem;
-  cursor: pointer;
-  z-index: 10;
-}
-
-.lightbox-btn:hover {
-  background: rgba(255,255,255,1);
-}
-
-.prev { left: 10px; }
-.next { right: 10px; }
-
 .lightbox.active {
   display: flex;
+  flex-direction: column;
+}
+
+.lightbox img {
+  max-width: 95%;
+  max-height: 70vh;
+  object-fit: contain;
+  border: 2px solid white;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.lightbox-text {
+  text-align: center;
+  color: white;
+  background: rgba(0,0,0,0.7);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  width: 95%;
+  max-width: 600px;
+}
+
+.lightbox-text h3 {
+  margin: 0 0 0.3rem;
+  font-size: 1.3rem;
+}
+
+.lightbox-text p {
+  margin: 0;
+  font-size: 1rem;
+  color: #ddd;
 }
 
 /* Botones flotantes */
@@ -457,6 +418,7 @@ footer {
   opacity: 1;
   animation: fadeIn 0.5s ease-in-out;
 }
+
 
 
 
