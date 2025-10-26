@@ -43,7 +43,7 @@
     function generarPedido(producto, precioMostrado) {
       const tieneImagenPublica = producto.foto && producto.foto.startsWith('http');
       const imagenTexto = tieneImagenPublica 
-        ? `\n\n🖼️ Foto: ${producto.foto}\n` 
+        ? `\n\n${producto.foto}\n` 
         : '\n\n*(Foto del arreglo disponible en el catálogo)*\n';
 
       const mensaje = 
@@ -166,3 +166,4 @@ Catálogo: https://krisarias1990.github.io/Florister-a-Santa-B-rbara
   </script>
 </body>
 </html>
+
