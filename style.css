@@ -450,6 +450,7 @@ footer {
   .footer-content {
     grid-template-columns: 1fr;
   }
+}
 
   /* Animación para el carousel */
 @keyframes fadeIn {
@@ -461,6 +462,6 @@ footer {
   opacity: 1;
   animation: fadeIn 0.5s ease-in-out;
 }
-}
+
 
 
