@@ -266,12 +266,6 @@ main {
   color: #444;
 }
 
-.lightbox-info .precio {
-  font-size: 1.1rem;
-  font-weight: bold;
-  color: #d1477a;
-}
-
 .lightbox-img {
   max-width: 90%;
   max-height: 60vh;
@@ -279,8 +273,8 @@ main {
   border: 3px solid white;
   border-radius: 8px;
   z-index: 5;
-  margin: 0 auto; /* Centrar horizontalmente */
-  display: block; /* Asegurar que sea bloque */
+  margin: 0 auto;
+  display: block;
 }
 
 .lightbox-btn {
@@ -452,7 +446,7 @@ footer {
   }
 }
 
-  /* Animación para el carousel */
+/* Animación para el carousel */
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -462,6 +456,3 @@ footer {
   opacity: 1;
   animation: fadeIn 0.5s ease-in-out;
 }
-
-
-
