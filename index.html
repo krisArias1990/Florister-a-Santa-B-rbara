@@ -89,8 +89,9 @@
     }
 
     function generarPedido(producto, precioMostrado) {
+      // Corrección: usar ![texto](url) para que WhatsApp muestre miniatura
       const urlImagen = producto.foto && producto.foto.startsWith('http') 
-        ? `\n[Ver imagen del arreglo](${producto.foto.trim()})\n` 
+        ? `\n![Ver imagen del arreglo](${producto.foto.trim()})\n` 
         : '\n*(Foto del arreglo disponible en el catálogo)*\n';
 
       const mensaje = 
