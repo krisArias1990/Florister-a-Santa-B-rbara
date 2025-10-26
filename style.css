@@ -268,7 +268,7 @@ main {
 }
 
 .lightbox-img {
-  max-width: 90%;
+  max-width: 40%;
   max-height: 60vh;
   object-fit: contain;
   border: 3px solid white;
@@ -457,4 +457,5 @@ footer {
   opacity: 1;
   animation: fadeIn 0.5s ease-in-out;
 }
+
 
