@@ -1,22 +1,72 @@
 [
   {
-    "id": "prod_1",
-    "nombre": "Bebé Globos",
-    "descripcion": "Ramo con rosas rosadas, hortensias y toque de eucalipto. Ideal para baby shower niña.",
-    "categoria": "Baby Shower y Nacimientos",
-    "precioBaja": 8000,
-    "precioAlta": 12000,
-    "foto": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/Baby shower/IMG_5817.jpg",
+    "id": "amor_001",
+    "nombre": "A135 - Amor y Amistad",
+    "descripcion": "Hermoso ramo de 12 rosas rojas (incluye barra de chocolate y florero). Elaborado cuidadosamente por expertos floristas. Puede que sea entregado con el botón cerrado para garantizar el mejor tiempo de vida del arreglo. Puedes agregar licores, galletas, frutas, peluches o regalos personalizados.",
+    "categoria": "Amor y Amistad",
+    "precioBaja": 35783,
+    "precioAlta": 69683,
+    "foto": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/amor-y-amistad/A135.jpg",
     "disponible": true
   },
   {
-    "id": "prod_2",
-    "nombre": "Corazón de Rosas",
-    "descripcion": "Arreglo en forma de corazón con rosas rojas premium. Perfecto para San Valentín o aniversarios.",
-    "categoria": "Amor y Amistad",
+    "id": "baby_001",
+    "nombre": "Ramo Bebé Estrella",
+    "descripcion": "Ramo delicado con flores suaves y tonos pastel, ideal para baby shower. Incluye moño temático y tarjeta personalizada.",
+    "categoria": "Baby Shower y Nacimientos",
+    "precioBaja": 8000,
+    "precioAlta": 12000,
+    "foto": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/baby-shower-y-nacimientos/BEBE.jpg",
+    "disponible": true
+  },
+  {
+    "id": "bodas_001",
+    "nombre": "Centro de Mesa Nupcial",
+    "descripcion": "Elegante centro de mesa con rosas blancas y follaje fino. Diseñado para bodas de día o noche. Incluye vela decorativa.",
+    "categoria": "Bodas",
+    "precioBaja": 25000,
+    "precioAlta": 35000,
+    "foto": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/bodas/BODAS.jpg",
+    "disponible": true
+  },
+  {
+    "id": "cumple_001",
+    "nombre": "Ramo Cumpleaños Dorado",
+    "descripcion": "Arreglo vibrante con girasoles, rosas amarillas y alstroemerias. Decorado con cintas doradas y globo de felicitación.",
+    "categoria": "Cumpleaños y Aniversarios",
+    "precioBaja": 10000,
+    "precioAlta": 15000,
+    "foto": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/cumpleanos-y-aniversarios/CUMPLEANOS.jpg",
+    "disponible": true
+  },
+  {
+    "id": "madre_001",
+    "nombre": "Corazón para Mamá",
+    "descripcion": "Arreglo en forma de corazón con claveles rosados y blancos. Incluye peluche y tarjeta con mensaje personalizado.",
+    "categoria": "Día de la Madre",
+    "precioBaja": 18000,
+    "precioAlta": 28000,
+    "foto": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/dia-de-la-madre/DIA-DE-LA-MADRE.jpg",
+    "disponible": true
+  },
+  {
+    "id": "ramos_001",
+    "nombre": "Ramo Clásico de Rosas",
+    "descripcion": "12 rosas rojas premium con follaje verde y envoltura elegante. El regalo clásico para cualquier ocasión.",
+    "categoria": "Ramos",
     "precioBaja": 9000,
     "precioAlta": 14000,
-    "foto": "https://via.placeholder.com/240x180/f9f0f4/d1477a?text=Corazón+Rosas",
+    "foto": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/ramos/RAMOS.jpg",
+    "disponible": true
+  },
+  {
+    "id": "rosas_001",
+    "nombre": "Rosas Rojas Premium",
+    "descripcion": "24 rosas rojas de tallo largo, importadas, con botón cerrado para mayor durabilidad. Entregadas en caja regalo.",
+    "categoria": "Rosas Rojas",
+    "precioBaja": 22000,
+    "precioAlta": 32000,
+    "foto": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/rosas-rojas/ROSAS-ROJAS.jpg",
     "disponible": true
   }
 ]
