@@ -35,10 +35,7 @@
       <button class="lightbox-btn prev" onclick="cambiarImagen(-1)">❮</button>
       <div class="lightbox-info">
         <h3 id="lightbox-nombre">Nombre</h3>
-        <p id="lightbox-descripcion">Descripción</p>
-        <p id="lightbox-precio">Precio</p>
-        <p class="tasa-producto">Tasa de Cambio: $1 = ₡504</p>
-        <p class="contacto-producto">Contáctenos: WP: 8605-3613</p>
+        <p id="lightbox-categoria">Categoría</p>
       </div>
       <img id="lightbox-img" src="">
       <button class="lightbox-btn next" onclick="cambiarImagen(1)">❯</button>
@@ -89,9 +86,9 @@
     }
 
     function generarPedido(producto, precioMostrado) {
-      // Corrección: usar ![texto](url) para que WhatsApp muestre miniatura
+      // Restauramos el formato que ya funcionaba: [texto](url)
       const urlImagen = producto.foto && producto.foto.startsWith('http') 
-        ? `\n![Ver imagen del arreglo](${producto.foto.trim()})\n` 
+        ? `\n[Ver imagen del arreglo](${producto.foto.trim()})\n` 
         : '\n*(Foto del arreglo disponible en el catálogo)*\n';
 
       const mensaje = 
@@ -154,11 +151,9 @@ Catálogo: https://krisarias1990.github.io/Florister-a-Santa-B-rbara
     function actualizarLightbox() {
       const fotos = currentProduct.fotos || [currentProduct.foto];
       const fotoActual = fotos[currentIndex] || fotos[0];
-      const precioActual = enTemporadaAlta(new Date()) ? currentProduct.precioAlta : currentProduct.precioBaja;
       document.getElementById('lightbox-img').src = fotoActual;
       document.getElementById('lightbox-nombre').textContent = currentProduct.nombre;
-      document.getElementById('lightbox-descripcion').textContent = currentProduct.descripcion || '';
-      document.getElementById('lightbox-precio').textContent = `₡${precioActual.toLocaleString()} IVA incl.`;
+      document.getElementById('lightbox-categoria').textContent = currentProduct.categoria;
     }
 
     function cambiarImagen(direccion) {
