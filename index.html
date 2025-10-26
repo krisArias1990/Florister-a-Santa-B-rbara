@@ -10,6 +10,7 @@
   <header>
     <h1>🌹 Floristería Santa Bárbara</h1>
     <p style="font-size:0.9rem; margin-top:0.3rem;">📱 Contáctanos por WhatsApp: <strong>8605-3613</strong></p>
+    <p class="tasa-cambio">💱 Tasa de cambio: $1 = ₡504 (referencia)</p>
   </header>
 
   <nav>
@@ -24,6 +25,11 @@
   <div id="lightbox" class="lightbox" onclick="cerrarLightbox()">
     <img id="lightbox-img" src="">
   </div>
+
+  <!-- Botón flotante de WhatsApp -->
+  <a href="https://wa.me/50686053613" class="whatsapp-flotante" target="_blank" title="Escríbenos por WhatsApp">
+    💬
+  </a>
 
   <script>
     const temporadasAltas = [
@@ -41,10 +47,10 @@
     }
 
     function generarPedido(producto, precioMostrado) {
-      const tieneImagenPublica = producto.foto && producto.foto.startsWith('http');
-      const imagenTexto = tieneImagenPublica 
-        ? `\n\n${producto.foto}\n` 
-        : '\n\n*(Foto del arreglo disponible en el catálogo)*\n';
+      // URL de imagen en línea separada → genera miniatura en WhatsApp
+      const urlImagen = producto.foto && producto.foto.startsWith('http') 
+        ? `\n${producto.foto}\n` 
+        : '\n*(Foto del arreglo disponible en el catálogo)*\n';
 
       const mensaje = 
 `¡Hola! Quisiera pedir el siguiente arreglo:
@@ -54,7 +60,7 @@ Categoría: ${producto.categoria}
 Precio: ₡${precioMostrado.toLocaleString()}
 Fecha: ${new Date().toLocaleDateString('es-CR', { day: '2-digit', month: '2-digit', year: 'numeric' })}
 
-Descripción: ${producto.descripcion || '—'}${imagenTexto}
+Descripción: ${producto.descripcion || '—'}${urlImagen}
 
 Por favor, confirmar disponibilidad.
 Gracias 🌹
@@ -63,7 +69,7 @@ Catálogo: https://krisarias1990.github.io/Florister-a-Santa-B-rbara
 
 — Enviado desde Floristería Santa Bárbara`;
 
-      const numero = '50686053613'; // 8605-3613 → 50686053613
+      const numero = '50686053613';
       const urlWhatsApp = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
 
       const esMovil = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
@@ -139,15 +145,19 @@ Catálogo: https://krisarias1990.github.io/Florister-a-Santa-B-rbara
             <h2>${cat}</h2>
             <div class="productos">
               ${prods.map(p => {
-                const precioActual = enTemporadaAlta(new Date()) ? p.precioAlta : p.precioBaja;
+                // Rango de precios al estilo Marvin
+                const rangoPrecio = p.precioBaja === p.precioAlta 
+                  ? `₡${p.precioBaja.toLocaleString()}`
+                  : `₡${p.precioBaja.toLocaleString()} – ₡${p.precioAlta.toLocaleString()}`;
+                
                 const fotoUrl = p.foto || 'https://via.placeholder.com/240x180/f9f0f4/d1477a?text=Sin+Foto';
                 return `
                   <div class="producto">
                     <img src="${fotoUrl}" alt="${p.nombre}" onclick="abrirLightbox('${fotoUrl}')">
                     <h3>${p.nombre}</h3>
                     <p class="descripcion">${p.descripcion || ''}</p>
-                    <p class="precio">₡${precioActual.toLocaleString()}</p>
-                    <button class="btn-pedir" onclick='generarPedido(${JSON.stringify(p).replace(/'/g, "\\'")}, ${precioActual})'>
+                    <p class="precio">${rangoPrecio} <span class="iva">IVA incl.</span></p>
+                    <button class="btn-pedir" onclick='generarPedido(${JSON.stringify(p).replace(/'/g, "\\'")}, ${enTemporadaAlta(new Date()) ? p.precioAlta : p.precioBaja})'>
                       📩 Enviar pedido por WhatsApp
                     </button>
                   </div>
@@ -166,4 +176,3 @@ Catálogo: https://krisarias1990.github.io/Florister-a-Santa-B-rbara
   </script>
 </body>
 </html>
-
