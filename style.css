@@ -75,6 +75,7 @@ main {
   object-fit: cover;
   border-radius: 8px;
   background: #f5f0f3;
+  cursor: pointer;
 }
 
 .producto h3 {
@@ -111,6 +112,31 @@ main {
   background: #b03560;
 }
 
+/* Lightbox */
+.lightbox {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.9);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border: 3px solid white;
+  border-radius: 8px;
+}
+
+.lightbox.active {
+  display: flex;
+}
+
 @media (max-width: 600px) {
   nav ul {
     justify-content: flex-start;
@@ -120,5 +146,4 @@ main {
   .productos {
     grid-template-columns: 1fr;
   }
-
 }
