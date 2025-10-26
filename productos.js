@@ -1,12 +1,12 @@
 [
   {
     "id": "prod_1",
-    "nombre": "Ramo Bebé Estrella",
+    "nombre": "Bebé Globos",
     "descripcion": "Ramo con rosas rosadas, hortensias y toque de eucalipto. Ideal para baby shower niña.",
     "categoria": "Baby Shower y Nacimientos",
     "precioBaja": 8000,
     "precioAlta": 12000,
-    "foto": "https://via.placeholder.com/240x180/f9f0f4/d1477a?text=Ramo+Bebé",
+    "foto": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/Baby shower/IMG5817.jpg",
     "disponible": true
   },
   {
