@@ -273,12 +273,14 @@ main {
 }
 
 .lightbox-img {
-  max-width: 80%;
-  max-height: 70vh;
+  max-width: 90%;
+  max-height: 60vh;
   object-fit: contain;
   border: 3px solid white;
   border-radius: 8px;
   z-index: 5;
+  margin: 0 auto; /* Centrar horizontalmente */
+  display: block; /* Asegurar que sea bloque */
 }
 
 .lightbox-btn {
@@ -449,3 +451,4 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+
