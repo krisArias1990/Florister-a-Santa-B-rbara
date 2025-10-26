@@ -214,7 +214,7 @@ main {
   font-weight: bold;
 }
 
-/* Lightbox minimalista */
+/* Lightbox minimalista y sin scroll */
 .lightbox {
   display: none;
   position: fixed;
@@ -222,11 +222,12 @@ main {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.95);
+  background: rgba(0, 0, 0, 0.95);
   z-index: 1000;
   justify-content: center;
   align-items: center;
   padding: 1rem;
+  overflow: hidden; /* ← clave: evita cualquier scroll */
 }
 
 .lightbox.active {
@@ -235,22 +236,26 @@ main {
 }
 
 .lightbox img {
-  max-width: 95%;
-  max-height: 70vh;
+  max-width: 95vw;    /* nunca más del 95% del ancho de la ventana */
+  max-height: 80vh;   /* nunca más del 80% del alto */
+  width: auto;
+  height: auto;
   object-fit: contain;
   border: 2px solid white;
   border-radius: 8px;
   margin-bottom: 1rem;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
 }
 
 .lightbox-text {
   text-align: center;
   color: white;
-  background: rgba(0,0,0,0.7);
-  padding: 0.5rem 1rem;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 0.6rem 1.2rem;
   border-radius: 8px;
-  width: 95%;
+  width: 95vw;
   max-width: 600px;
+  font-size: 1.1rem;
 }
 
 .lightbox-text h3 {
@@ -260,7 +265,6 @@ main {
 
 .lightbox-text p {
   margin: 0;
-  font-size: 1rem;
   color: #ddd;
 }
 
@@ -418,6 +422,7 @@ footer {
   opacity: 1;
   animation: fadeIn 0.5s ease-in-out;
 }
+
 
 
 
