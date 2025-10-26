@@ -120,4 +120,5 @@ main {
   .productos {
     grid-template-columns: 1fr;
   }
+
 }
