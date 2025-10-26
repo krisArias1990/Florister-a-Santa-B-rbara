@@ -1,0 +1,123 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+body {
+  background: #fffaf7;
+  color: #444;
+  line-height: 1.6;
+}
+
+header {
+  background: #d1477a;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+
+nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background: #f9f0f4;
+  padding: 0.6rem;
+  gap: 0.6rem;
+  list-style: none;
+}
+
+nav a {
+  text-decoration: none;
+  color: #d1477a;
+  font-weight: 600;
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  background: white;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+main {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.categoria {
+  margin-bottom: 2.5rem;
+}
+
+.categoria h2 {
+  color: #d1477a;
+  margin-bottom: 1.2rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #f0e6ed;
+}
+
+.productos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.8rem;
+}
+
+.producto {
+  background: white;
+  border-radius: 12px;
+  padding: 1.2rem;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.producto img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  background: #f5f0f3;
+}
+
+.producto h3 {
+  margin: 0.8rem 0 0.4rem;
+  font-size: 1.1rem;
+}
+
+.descripcion {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 0.6rem;
+  min-height: 2.2rem;
+}
+
+.precio {
+  font-size: 1.3rem;
+  color: #d1477a;
+  font-weight: bold;
+}
+
+.btn-pedir {
+  background: #d1477a;
+  color: white;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 0.6rem;
+  font-weight: bold;
+}
+
+.btn-pedir:hover {
+  background: #b03560;
+}
+
+@media (max-width: 600px) {
+  nav ul {
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding: 0.6rem 0.2rem;
+  }
+  .productos {
+    grid-template-columns: 1fr;
+  }
+}

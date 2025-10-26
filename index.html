@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Floristería Santa Bárbara</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>🌹 Floristería Santa Bárbara</h1>
+    <p style="font-size:0.9rem; margin-top:0.3rem;">📱 Contáctanos por WhatsApp: <strong>8825-8465</strong></p>
+  </header>
+
+  <nav>
+    <ul id="menuCategorias"></ul>
+  </nav>
+
+  <main id="catalogo"></main>
+
+  <script src="db.js"></script>
+  <script>
+    const temporadasAltas = [
+      { inicio: "2025-02-01", fin: "2025-02-15" },
+      { inicio: "2025-05-01", fin: "2025-05-15" },
+      { inicio: "2025-11-15", fin: "2025-12-31" }
+    ];
+
+    function enTemporadaAlta(hoy) {
+      return temporadasAltas.some(t => {
+        const ini = new Date(t.inicio);
+        const fin = new Date(t.fin);
+        return hoy >= ini && hoy <= fin;
+      });
+    }
+
+    function generarPedido(producto, precioMostrado) {
+      const tieneImagenPublica = producto.foto && producto.foto.startsWith('http');
+      const imagenTexto = tieneImagenPublica 
+        ? `\n![Foto](${producto.foto})\n` 
+        : '\n*(Foto del arreglo disponible en el catálogo)*\n';
+
+      const mensaje = 
+`¡Hola! Quisiera pedir el siguiente arreglo:
+
+Producto: ${producto.nombre}
+Categoría: ${producto.categoria}
+Precio: ₡${precioMostrado.toLocaleString()}
+Fecha: ${new Date().toLocaleDateString('es-CR', { day: '2-digit', month: '2-digit', year: 'numeric' })}
+
+Descripción: ${producto.descripcion || '—'}${imagenTexto}
+
+Por favor, confirmar disponibilidad.
+Gracias 🌹
+
+Catálogo: https://krisarias1990.github.io/Florister-a-Santa-B-rbara
+
+— Enviado desde Floristería Santa Bárbara`;
+
+      const numero = '50688258465'; // 👈 ¡Cambia esto si es necesario!
+      const urlWhatsApp = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
+
+      const esMovil = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+      if (esMovil) {
+        window.open(urlWhatsApp, '_blank');
+      } else {
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(mensaje).then(() => {
+            if (confirm('✅ Mensaje copiado.\n\n¿Abrir WhatsApp Web?')) {
+              window.open(urlWhatsApp, '_blank');
+            }
+          }).catch(() => {
+            alert('📋 Copia este mensaje y envíalo por WhatsApp:\n\n' + mensaje);
+          });
+        } else {
+          const textarea = document.createElement('textarea');
+          textarea.value = mensaje;
+          textarea.style.position = 'fixed';
+          textarea.style.opacity = '0';
+          document.body.appendChild(textarea);
+          textarea.select();
+          document.execCommand('copy');
+          document.body.removeChild(textarea);
+          if (confirm('📋 Mensaje copiado.\n\n¿Abrir WhatsApp Web?')) {
+            window.open(urlWhatsApp, '_blank');
+          }
+        }
+      }
+    }
+
+    function renderCatalogo() {
+      const productos = cargarProductos();
+      const categoriasBloqueadas = JSON.parse(localStorage.getItem('categoriasBloqueadas') || '[]');
+      
+      const productosVisibles = productos.filter(p => 
+        p.disponible !== false && !categoriasBloqueadas.includes(p.categoria)
+      );
+
+      const categoriasUnicas = [...new Set(productosVisibles.map(p => p.categoria))];
+      const menu = document.getElementById('menuCategorias');
+      const catalogo = document.getElementById('catalogo');
+
+      menu.innerHTML = categoriasUnicas.map(cat => 
+        `<li><a href="#${encodeURIComponent(cat)}">${cat}</a></li>`
+      ).join('');
+
+      const grupos = {};
+      productosVisibles.forEach(p => {
+        if (!grupos[p.categoria]) grupos[p.categoria] = [];
+        grupos[p.categoria].push(p);
+      });
+
+      catalogo.innerHTML = Object.entries(grupos).map(([cat, prods]) => `
+        <section class="categoria" id="${encodeURIComponent(cat)}">
+          <h2>${cat}</h2>
+          <div class="productos">
+            ${prods.map(p => {
+              const precioActual = enTemporadaAlta(new Date()) ? p.precioAlta : p.precioBaja;
+              return `
+                <div class="producto">
+                  <img src="${p.foto || 'https://via.placeholder.com/240x180/f9f0f4/d1477a?text=Sin+Foto'}" alt="${p.nombre}">
+                  <h3>${p.nombre}</h3>
+                  <p class="descripcion">${p.descripcion || ''}</p>
+                  <p class="precio">₡${precioActual.toLocaleString()}</p>
+                  <button class="btn-pedir" onclick='generarPedido(${JSON.stringify(p).replace(/'/g, "\\'")}, ${precioActual})'>
+                    📩 Enviar pedido por WhatsApp
+                  </button>
+                </div>
+              `;
+            }).join('')}
+          </div>
+        </section>
+      `).join('') || '<p style="text-align:center; padding:2rem; color:#888;">No hay productos disponibles en este momento.</p>';
+    }
+
+    document.addEventListener('DOMContentLoaded', renderCatalogo);
+  </script>
+</body>
+</html>
