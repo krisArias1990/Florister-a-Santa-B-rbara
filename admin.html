@@ -215,51 +215,51 @@
       cargarYMostrarProductos();
     }
 
-function exportarBackup() {
-  const productos = cargarProductos();
-  const jsonStr = JSON.stringify(productos, null, 2);
-  
-  // Mostrar en un cuadro de texto
-  const textarea = document.createElement('textarea');
-  textarea.value = jsonStr;
-  textarea.style.width = '100%';
-  textarea.style.height = '300px';
-  textarea.style.marginTop = '1rem';
-  textarea.style.padding = '0.5rem';
-  textarea.style.fontFamily = 'monospace';
-  textarea.readOnly = true;
-
-  const container = document.createElement('div');
-  container.innerHTML = '<h3>📋 Copia este texto y pégalo en productos.json:</h3>';
-  container.appendChild(textarea);
-
-  // Botón para copiar al portapapeles
-  const copyBtn = document.createElement('button');
-  copyBtn.textContent = '✅ Copiar todo';
-  copyBtn.onclick = () => {
-    navigator.clipboard.writeText(jsonStr).then(() => {
-      alert('✅ Copiado al portapapeles.');
-    }).catch(() => {
-      alert('📋 Copia manualmente el texto.');
-    });
-  };
-
-  container.appendChild(copyBtn);
-
-  // Reemplazar el contenido del contenedor de productos
-  const lista = document.getElementById('listaProductos');
-  lista.innerHTML = '';
-  lista.appendChild(container);
-
-  // Opcional: descargar el archivo .json
-  const blob = new Blob([jsonStr], { type: 'application/json' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'floristeria-santabarbara-backup.json';
-  a.click();
-  URL.revokeObjectURL(url);
-}
+    function exportarBackup() {
+      const productos = cargarProductos();
+      const jsonStr = JSON.stringify(productos, null, 2);
+      
+      // Mostrar en un cuadro de texto
+      const textarea = document.createElement('textarea');
+      textarea.value = jsonStr;
+      textarea.style.width = '100%';
+      textarea.style.height = '300px';
+      textarea.style.marginTop = '1rem';
+      textarea.style.padding = '0.5rem';
+      textarea.style.fontFamily = 'monospace';
+      textarea.readOnly = true;
+    
+      const container = document.createElement('div');
+      container.innerHTML = '<h3>📋 Copia este texto y pégalo en productos.json:</h3>';
+      container.appendChild(textarea);
+    
+      // Botón para copiar al portapapeles
+      const copyBtn = document.createElement('button');
+      copyBtn.textContent = '✅ Copiar todo';
+      copyBtn.onclick = () => {
+        navigator.clipboard.writeText(jsonStr).then(() => {
+          alert('✅ Copiado al portapapeles.');
+        }).catch(() => {
+          alert('📋 Copia manualmente el texto.');
+        });
+      };
+    
+      container.appendChild(copyBtn);
+    
+      // Reemplazar el contenido del contenedor de productos
+      const lista = document.getElementById('listaProductos');
+      lista.innerHTML = '';
+      lista.appendChild(container);
+    
+      // Opcional: descargar el archivo .json
+      const blob = new Blob([jsonStr], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'floristeria-santabarbara-backup.json';
+      a.click();
+      URL.revokeObjectURL(url);
+    }
 
     function importarBackup(e) {
       const file = e.target.files[0];
@@ -327,4 +327,5 @@ function exportarBackup() {
   </script>
 </body>
 </html>
+
 
