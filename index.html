@@ -113,7 +113,7 @@ Descripción: ${producto.descripcion || '—'}${urlImagen}
 Por favor, confirmar disponibilidad.
 Gracias 🌹
 
-Catálogo: https://krisarias1990.github.io/Florister-a-Santa-B-rbara
+Catálogo: https://krisarias1990.github.io/Florister-a-Santa-B-rbara  
 
 — Enviado desde Floristería Santa Bárbara`;
 
@@ -214,10 +214,12 @@ Catálogo: https://krisarias1990.github.io/Florister-a-Santa-B-rbara
             <div class="productos">
               ${prods.map(p => {
                 const precioActual = enTemporadaAlta(new Date()) ? p.precioAlta : p.precioBaja;
-                const fotoUrl = p.foto || 'https://via.placeholder.com/240x180/f9f0f4/d1477a?text=Sin+Foto';
+                const fotoUrl = p.foto?.trim() || 'https://via.placeholder.com/240x180/f9f0f4/d1477a?text=Sin+Foto';
                 return `
                   <div class="producto">
-                    <img src="${fotoUrl}" alt="${p.nombre}" onclick="abrirLightbox(${JSON.stringify(p).replace(/'/g, "\\'")})">
+                    <img src="${fotoUrl}" alt="${p.nombre}" 
+                         data-product='${JSON.stringify(p).replace(/'/g, "&#39;").replace(/"/g, "&quot;")}' 
+                         class="producto-img">
                     <h3>${p.nombre}</h3>
                     <p class="descripcion">${p.descripcion || ''}</p>
                     <p class="precio">₡${precioActual.toLocaleString()} IVA incl.</p>
@@ -237,6 +239,25 @@ Catálogo: https://krisarias1990.github.io/Florister-a-Santa-B-rbara
         console.error(err);
       }
     }
+
+    // Event listener global para abrir lightbox
+    document.addEventListener('click', function(e) {
+      if (e.target.classList.contains('producto-img')) {
+        const productStr = e.target.getAttribute('data-product');
+        if (productStr) {
+          try {
+            const producto = JSON.parse(
+              productStr.replace(/&#39;/g, "'").replace(/&quot;/g, '"')
+            );
+            if (producto.foto) producto.foto = producto.foto.trim();
+            abrirLightbox(producto);
+          } catch (err) {
+            console.error('Error al abrir lightbox:', err);
+            alert('No se pudo cargar la imagen. Inténtalo de nuevo.');
+          }
+        }
+      }
+    });
 
     document.addEventListener('DOMContentLoaded', renderCatalogo);
   </script>
