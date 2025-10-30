@@ -179,16 +179,7 @@ Catálogo: https://krisarias1990.github.io/Florister-a-Santa-B-rbara
         title: "San Valentín",
         subtitle: "¡Incluye barra de chocolate y florero!"
       },
-      {
-        img: "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/Arreglos%20Premium/50.png",
-        title: "Arreglos Premium",
-        subtitle: "Arreglos únicos para la mujer más importante"
-      },
-      {
-        img: "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/9ed321c8d270278e680e95fb6907174687b646ed/flores/Arreglos%20Premium/49.png",
-        title: "Arreglos Premium",
-        subtitle: "¡Celebra con flores vibrantes!"
-      }
+
     ];
 
     let currentBanner = 0;
@@ -255,9 +246,8 @@ Catálogo: https://krisarias1990.github.io/Florister-a-Santa-B-rbara
                          class="producto-img">
                     <h3>${p.nombre}</h3>
                     <p class="descripcion">${p.descripcion || ''}</p>
-                    <p class="precio">₡${precioActual.toLocaleString()} IVA incl.</p>
-                    <p class="tasa-producto">Tasa de Cambio: $1 = ₡504</p>
-                    <p class="contacto-producto">Contáctenos: WP: 8605-3613</p>
+                    <p class="precio">₡${precioActual.toLocaleString()} </p>
+                    <p class="contacto-producto">Contáctenos: 8605-3613</p>
                     <button class="btn-pedir" onclick='generarPedido(${JSON.stringify(p).replace(/'/g, "\\'")}, ${precioActual})'>
                       📩 Enviar pedido por WhatsApp
                     </button>
@@ -305,6 +295,7 @@ Catálogo: https://krisarias1990.github.io/Florister-a-Santa-B-rbara
   </script>
 </body>
 </html>
+
 
 
 
