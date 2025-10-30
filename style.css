@@ -35,6 +35,7 @@ header {
   width: 150px;
   height: auto;
   border-radius: 8px;
+  align-items: center;
 }
 
 header h1 {
@@ -422,6 +423,7 @@ footer {
   opacity: 1;
   animation: fadeIn 0.5s ease-in-out;
 }
+
 
 
 
