@@ -43,10 +43,10 @@
     "id": "prod_1761439335782",
     "nombre": "Ramo",
     "descripcion": "Ramo delicado con flores suaves y tonos pastel, ideal para baby shower. Incluye moño temático y tarjeta personalizada.",
-    "categoria": "Amor y Amistad",
+    "categoria": "Baby Shower",
     "precioBaja": 8000,
     "precioAlta": 12000,
-    "foto": "https://github.com/krisArias1990/Florister-a-Santa-B-rbara/blob/1e6b6e6b338b59f87371223fdf631eed66088c5b/flores/amor-y-amistad/IMG_5823.jpeg",
+    "foto": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/e9ce7b5ac7b3859d583e24e4fb74bdce3507a23d/flores/Baby%20shower/cdb5301e-5d1d-40ff-bab0-2897452b8bf3.jpg",
     "disponible": true
   },
   {
@@ -56,7 +56,7 @@
     "categoria": "Bodas",
     "precioBaja": 25000,
     "precioAlta": 35000,
-    "foto": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/bodas/BODAS.jpg",
+    "foto": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/b90ce55db9ac8ede6bc35e5d7533e0daf5fb7fbe/10.png",
     "disponible": true
   },
   {
@@ -66,7 +66,7 @@
     "categoria": "Cumpleaños y Aniversarios",
     "precioBaja": 10000,
     "precioAlta": 15000,
-    "foto": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/cumpleanos-y-aniversarios/CUMPLEANOS.jpg",
+    "foto": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/b90ce55db9ac8ede6bc35e5d7533e0daf5fb7fbe/4.png",
     "disponible": true
   },
   {
@@ -86,7 +86,7 @@
     "categoria": "Ramos",
     "precioBaja": 9000,
     "precioAlta": 14000,
-    "foto": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/ramos/RAMOS.jpg",
+    "foto": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/04908219decdc3521278e60971274bd0d5ba425b/flores/amor-y-amistad/IMG_5816.jpeg",
     "disponible": true
   },
   {
@@ -96,7 +96,7 @@
     "categoria": "Ramos",
     "precioBaja": 22000,
     "precioAlta": 32000,
-    "foto": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/rosas-rojas/ROSAS-ROJAS.jpg",
+    "foto": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/04908219decdc3521278e60971274bd0d5ba425b/flores/amor-y-amistad/IMG_5816.jpeg",
     "disponible": true
   }
 ]
