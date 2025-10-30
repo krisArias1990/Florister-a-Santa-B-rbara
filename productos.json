@@ -10,6 +10,36 @@
     "disponible": true
   },
   {
+    "id": "prod_1761792786989",
+    "nombre": "Arreglo Premium 1",
+    "descripcion": "Flores variadas con base.",
+    "categoria": "Arreglos Premium",
+    "precioBaja": 20000,
+    "precioAlta": 35000,
+    "foto": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/9ed321c8d270278e680e95fb6907174687b646ed/flores/Arreglos%20Premium/50.png",
+    "disponible": true
+  },
+  {
+    "id": "prod_1761792866485",
+    "nombre": "Arreglos Premium",
+    "descripcion": "Flores en base, consulta nuestros precios.",
+    "categoria": "Arreglos Premium",
+    "precioBaja": 15000,
+    "precioAlta": 25000,
+    "foto": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/9ed321c8d270278e680e95fb6907174687b646ed/flores/Arreglos%20Premium/49.png",
+    "disponible": true
+  },
+  {
+    "id": "prod_1761792909894",
+    "nombre": "Arreglos Premium 3",
+    "descripcion": "Flores varias.",
+    "categoria": "Arreglos Premium",
+    "precioBaja": 30000,
+    "precioAlta": 45000,
+    "foto": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/9ed321c8d270278e680e95fb6907174687b646ed/flores/Arreglos%20Premium/WhatsApp%20Image%202025-04-09%20at%209.54.20%20AM.jpeg",
+    "disponible": true
+  },
+  {
     "id": "prod_1761439335782",
     "nombre": "Ramo",
     "descripcion": "Ramo delicado con flores suaves y tonos pastel, ideal para baby shower. Incluye moño temático y tarjeta personalizada.",
