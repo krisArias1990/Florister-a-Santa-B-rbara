@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Floristería Santa Bárbara: arreglos florales para todas las ocasiones en Heredia, Costa Rica. Enviamos a domicilio.">
-  <meta name="keywords" content="floristería, flores, regalos, San Valentín, Día de la Madre, bodas, Heredia, Costa Rica">
+  <meta name="description" content="Floristería Santa Bárbara: arreglos florales para todas las ocasiones en Heredia, Costa Rica.">
   <title>Floristería Santa Bárbara</title>
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -12,7 +11,7 @@
   <header>
     <div class="header-content">
       <img src="assets/logo.png" alt="Floristería Santa Bárbara" class="logo">
-      <h1>🌹 Floristería Santa Bárbara</h1>
+      <!-- ✅ Eliminado el texto "Floristería Santa Bárbara" -->
       <p class="tasa-cambio">💱 Tasa de cambio: $1 = ₡504 (referencia)</p>
     </div>
     <nav>
@@ -20,29 +19,29 @@
     </nav>
   </header>
 
-  <main id="catalogo">
-    <p style="text-align:center; padding:2rem; color:#888;">Cargando catálogo...</p>
-  </main>
-
-  <!-- Banner promocional -->
+  <!-- ✅ Banner movido aquí, justo debajo del header -->
   <section class="carousel">
     <div class="carousel-inner" id="carousel-inner"></div>
   </section>
 
-  <!-- Lightbox simplificado -->
-<div id="lightbox" class="lightbox" onclick="cerrarLightbox()">
-  <img id="lightbox-img" src="" alt="Imagen del producto">
-  <div class="lightbox-text">
-    <h3 id="lightbox-nombre"></h3>
-    <p id="lightbox-categoria"></p>
+  <main id="catalogo">
+    <p style="text-align:center; padding:2rem; color:#888;">Cargando catálogo...</p>
+  </main>
+
+  <!-- Lightbox minimalista -->
+  <div id="lightbox" class="lightbox" onclick="cerrarLightbox()">
+    <img id="lightbox-img" src="" alt="Imagen del producto">
+    <div class="lightbox-text">
+      <h3 id="lightbox-nombre"></h3>
+      <p id="lightbox-categoria"></p>
+    </div>
   </div>
-</div>
-  
+
   <!-- Botones flotantes -->
   <a href="https://wa.me/50686053613" class="whatsapp-flotante" target="_blank">💬</a>
   <button class="btn-inicio" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑ Inicio</button>
 
-  <!-- Pie de página -->
+  <!-- Pie de página actualizado -->
   <footer>
     <div class="footer-content">
       <div class="footer-section">
@@ -59,6 +58,14 @@
         <h3>Redes Sociales</h3>
         <p>📸 Instagram: @floristeriasantabarbara</p>
         <p>📘 Facebook: Floristería Santa Bárbara</p>
+        <p>🎵 TikTok: @floristeriasantabarbara</p> <!-- ✅ TikTok agregado -->
+      </div>
+      <div class="footer-section">
+        <h3>Formas de Pago</h3> <!-- ✅ Nueva sección -->
+        <p>✅ SINPE Móvil</p>
+        <p>💳 Datafón (todas las tarjetas)</p>
+        <p>🔗 Link de pago</p>
+        <p>🏦 Transferencia bancaria</p>
       </div>
     </div>
     <div class="footer-bottom">
@@ -298,4 +305,5 @@ Catálogo: https://krisarias1990.github.io/Florister-a-Santa-B-rbara
   </script>
 </body>
 </html>
+
 
