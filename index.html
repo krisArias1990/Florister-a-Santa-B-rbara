@@ -11,7 +11,6 @@
   <header>
     <div class="header-content">
       <img src="assets/logo.png" alt="Floristería Santa Bárbara" class="logo">
-      <!-- ✅ Eliminado el texto "Floristería Santa Bárbara" -->
       <p class="tasa-cambio">💱 Tasa de cambio: $1 = ₡504 (referencia)</p>
     </div>
     <nav>
@@ -19,7 +18,7 @@
     </nav>
   </header>
 
-  <!-- ✅ Banner movido aquí, justo debajo del header -->
+  <!-- Banner dinámico -->
   <section class="carousel">
     <div class="carousel-inner" id="carousel-inner"></div>
   </section>
@@ -58,10 +57,10 @@
         <h3>Redes Sociales</h3>
         <p>📸 Instagram: @floristeriasantabarbara</p>
         <p>📘 Facebook: Floristería Santa Bárbara</p>
-        <p>🎵 TikTok: @floristeriasantabarbara</p> <!-- ✅ TikTok agregado -->
+        <p>🎵 TikTok: @floristeriasantabarbara</p>
       </div>
       <div class="footer-section">
-        <h3>Formas de Pago</h3> <!-- ✅ Nueva sección -->
+        <h3>Formas de Pago</h3>
         <p>✅ SINPE Móvil</p>
         <p>💳 Datafono (todas las tarjetas)</p>
         <p>🔗 Link de pago</p>
@@ -89,11 +88,6 @@
     }
 
     function generarPedido(producto, precioMostrado) {
-      // Restauramos el formato que ya funcionaba: [texto](url)
-      const urlImagen = producto.foto && producto.foto.startsWith('http') 
-        ? `\n[Ver imagen del arreglo](${producto.foto.trim()})\n` 
-        : '\n*(Foto del arreglo disponible en el catálogo)*\n';
-
       const mensaje = 
 `¡Hola! Quisiera pedir el siguiente arreglo:
 
@@ -102,7 +96,9 @@ Categoría: ${producto.categoria}
 Precio: ₡${precioMostrado.toLocaleString()}
 Fecha: ${new Date().toLocaleDateString('es-CR', { day: '2-digit', month: '2-digit', year: 'numeric' })}
 
-Descripción: ${producto.descripcion || '—'}${urlImagen}
+Descripción: ${producto.descripcion || '—'}
+
+🖼️ Imagen del arreglo: ${producto.foto?.trim() || ''}
 
 Por favor, confirmar disponibilidad.
 Gracias 🌹
@@ -111,18 +107,18 @@ Catálogo: https://krisarias1990.github.io/Florister-a-Santa-B-rbara
 
 — Enviado desde Floristería Santa Bárbara`;
 
-      const urlWhatsApp = `https://wa.me/50686053613?text=${encodeURIComponent(mensaje)}`;
+      const numero = '50686053613';
+      const urlWhatsApp = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
       const esMovil = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
       if (esMovil) {
         window.open(urlWhatsApp, '_blank');
       } else {
         if (navigator.clipboard) {
           navigator.clipboard.writeText(mensaje).then(() => {
-            if (confirm('✅ Mensaje copiado.\n\n¿Abrir WhatsApp Web?')) {
-              window.open(urlWhatsApp, '_blank');
-            }
+            alert('✅ Mensaje copiado.\n\nAbre WhatsApp Web y pégalo (Ctrl+V).\n\nLa imagen se verá al hacer clic en el enlace.');
           }).catch(() => {
-            alert('📋 Copia este mensaje y envíalo por WhatsApp:\n\n' + mensaje);
+            alert('📋 Copia manualmente este mensaje y pégalo en WhatsApp Web:\n\n' + mensaje);
           });
         } else {
           const textarea = document.createElement('textarea');
@@ -133,38 +129,17 @@ Catálogo: https://krisarias1990.github.io/Florister-a-Santa-B-rbara
           textarea.select();
           document.execCommand('copy');
           document.body.removeChild(textarea);
-          if (confirm('📋 Mensaje copiado.\n\n¿Abrir WhatsApp Web?')) {
-            window.open(urlWhatsApp, '_blank');
-          }
+          alert('📋 Mensaje copiado.\n\nAbre WhatsApp Web y pégalo (Ctrl+V).\n\nLa imagen se verá al hacer clic en el enlace.');
         }
       }
     }
 
-    let currentProduct = null;
-    let currentIndex = 0;
-
     function abrirLightbox(producto) {
-      currentProduct = producto;
-      currentIndex = 0;
-      actualizarLightbox();
+      document.getElementById('lightbox-img').src = producto.foto?.trim() || '';
+      document.getElementById('lightbox-nombre').textContent = producto.nombre;
+      document.getElementById('lightbox-categoria').textContent = producto.categoria;
       document.getElementById('lightbox').classList.add('active');
       document.body.style.overflow = 'hidden';
-    }
-
-    function actualizarLightbox() {
-      const fotos = currentProduct.fotos || [currentProduct.foto];
-      const fotoActual = fotos[currentIndex] || fotos[0];
-      document.getElementById('lightbox-img').src = fotoActual;
-      document.getElementById('lightbox-nombre').textContent = currentProduct.nombre;
-      document.getElementById('lightbox-categoria').textContent = currentProduct.categoria;
-    }
-
-    function cambiarImagen(direccion) {
-      const fotos = currentProduct.fotos || [currentProduct.foto];
-      currentIndex += direccion;
-      if (currentIndex < 0) currentIndex = fotos.length - 1;
-      if (currentIndex >= fotos.length) currentIndex = 0;
-      actualizarLightbox();
     }
 
     function cerrarLightbox() {
@@ -172,38 +147,50 @@ Catálogo: https://krisarias1990.github.io/Florister-a-Santa-B-rbara
       document.body.style.overflow = '';
     }
 
-    // Banner con tus imágenes reales
-    const banners = [
-      {
-        img: "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/amor-y-amistad/IMG_5816.jpeg",
-        title: "San Valentín",
-        subtitle: "¡Incluye barra de chocolate y florero!"
-      },
-
-    ];
-
+    // Banner dinámico desde productos.json
     let currentBanner = 0;
-    function renderCarousel() {
-      const inner = document.getElementById('carousel-inner');
-      inner.innerHTML = banners.map(b => `
-        <div class="carousel-item">
-          <img src="${b.img}" alt="${b.title}">
-          <div class="carousel-caption">
-            <h3>${b.title}</h3>
-            <p>${b.subtitle}</p>
-            <p class="contacto-banner">Contáctenos: WP: 8605-3613</p>
+    async function renderCarousel() {
+      try {
+        const response = await fetch('productos.json?_=' + Date.now());
+        const productos = await response.json();
+        const productosVisibles = productos.filter(p => p.disponible !== false);
+
+        const categoriasDestacadas = ["Arreglos Premium", "Amor y Amistad", "Día de la Madre", "Bodas", "San Valentín"];
+        let productosDestacados = productosVisibles.filter(p => categoriasDestacadas.includes(p.categoria));
+        if (productosDestacados.length < 5) {
+          productosDestacados = productosVisibles.slice(0, 5);
+        }
+
+        const inner = document.getElementById('carousel-inner');
+        inner.innerHTML = productosDestacados.map(p => `
+          <div class="carousel-item">
+            <img src="${p.foto?.trim() || 'https://via.placeholder.com/800x300/f9f0f4/d1477a?text=Sin+Foto'}" alt="${p.nombre}">
+            <div class="carousel-caption">
+              <h3>${p.categoria}</h3>
+              <p>${p.nombre}</p>
+              <p class="contacto-banner">Contáctenos: 8605-3613</p>
+            </div>
           </div>
-        </div>
-      `).join('');
+        `).join('');
+
+        setTimeout(() => {
+          const first = document.querySelector('.carousel-item');
+          if (first) first.classList.add('active');
+        }, 100);
+      } catch (err) {
+        console.error('Error al cargar el banner:', err);
+      }
     }
 
     function rotateBanner() {
       const items = document.querySelectorAll('.carousel-item');
+      if (items.length === 0) return;
       items.forEach(item => item.classList.remove('active'));
-      currentBanner = (currentBanner + 1) % banners.length;
+      currentBanner = (currentBanner + 1) % items.length;
       items[currentBanner].classList.add('active');
     }
 
+    // Catálogo
     async function renderCatalogo() {
       try {
         const response = await fetch('productos.json?_=' + Date.now());
@@ -214,7 +201,7 @@ Catálogo: https://krisarias1990.github.io/Florister-a-Santa-B-rbara
         );
 
         if (productosVisibles.length === 0) {
-          document.getElementById('catalogo').innerHTML = '<p style="text-align:center; padding:2rem; color:#888;">No hay productos disponibles en este momento.</p>';
+          document.getElementById('catalogo').innerHTML = '<p style="text-align:center; padding:2rem; color:#888;">No hay productos disponibles.</p>';
           return;
         }
 
@@ -246,8 +233,8 @@ Catálogo: https://krisarias1990.github.io/Florister-a-Santa-B-rbara
                          class="producto-img">
                     <h3>${p.nombre}</h3>
                     <p class="descripcion">${p.descripcion || ''}</p>
-                    <p class="precio">₡${precioActual.toLocaleString()} </p>
-                    <p class="contacto-producto">Contáctenos: 8605-3613</p>
+                    <p class="precio">₡${precioActual.toLocaleString()}</p>
+                    <p class="contacto-producto">Contáctenos: WP: 8605-3613</p>
                     <button class="btn-pedir" onclick='generarPedido(${JSON.stringify(p).replace(/'/g, "\\'")}, ${precioActual})'>
                       📩 Enviar pedido por WhatsApp
                     </button>
@@ -271,11 +258,10 @@ Catálogo: https://krisarias1990.github.io/Florister-a-Santa-B-rbara
             const producto = JSON.parse(
               productStr.replace(/&#39;/g, "'").replace(/&quot;/g, '"')
             );
-            if (producto.foto) producto.foto = producto.foto.trim();
             abrirLightbox(producto);
           } catch (err) {
             console.error('Error al abrir lightbox:', err);
-            alert('No se pudo cargar la imagen. Inténtalo de nuevo.');
+            alert('No se pudo cargar la imagen.');
           }
         }
       }
@@ -284,22 +270,8 @@ Catálogo: https://krisarias1990.github.io/Florister-a-Santa-B-rbara
     document.addEventListener('DOMContentLoaded', () => {
       renderCarousel();
       renderCatalogo();
-      // Activar primer banner
-      setTimeout(() => {
-        const first = document.querySelector('.carousel-item');
-        if (first) first.classList.add('active');
-      }, 100);
-      // Rotar cada 5 segundos
       setInterval(rotateBanner, 5000);
     });
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
