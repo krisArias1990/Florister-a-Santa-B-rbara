@@ -44,11 +44,15 @@
   <footer>
     <div class="footer-content">
       <div class="footer-section">
-        <h3>Contáctenos</h3>
-        <p>📱 WhatsApp: 8605-3613</p>
-        <p>📍 Santa Bárbara, Heredia</p>
-        <p>🕒 Horario: Lunes a Sábado 8am-6pm</p>
-      </div>
+  <h3>Contáctenos</h3>
+  <p>📱 WhatsApp: <a href="https://wa.me/50686053613" target="_blank" style="color:#d1477a; text-decoration:underline;">8605-3613</a></p>
+  <p>📍 <a href="https://www.google.com/maps?q=Santa+Bárbara,+Heredia,+Costa+Rica" target="_blank" style="color:#d1477a; text-decoration:underline;">Santa Bárbara, Heredia</a></p>
+  <p style="font-size:0.85rem; margin-top:0.3rem;">
+    <a href="https://waze.com/ul?q=Santa+Bárbara,+Heredia,+Costa+Rica" target="_blank" style="color:#d1477a; margin-right:0.8rem;">Waze</a> |
+    <a href="https://www.google.com/maps?q=Santa+Bárbara,+Heredia,+Costa+Rica" target="_blank" style="color:#d1477a;">Google Maps</a>
+  </p>
+  <p>🕒 Horario: Lunes a Sábado 8am-6pm</p>
+</div>
       <div class="footer-section">
         <h3>Acerca de</h3>
         <p>Floristería Santa Bárbara: más de 10 años creando momentos inolvidables.</p>
@@ -147,48 +151,49 @@ Catálogo: https://krisarias1990.github.io/Florister-a-Santa-B-rbara
       document.body.style.overflow = '';
     }
 
-    // Banner dinámico desde productos.json
-    let currentBanner = 0;
-    async function renderCarousel() {
-      try {
-        const response = await fetch('productos.json?_=' + Date.now());
-        const productos = await response.json();
-        const productosVisibles = productos.filter(p => p.disponible !== false);
-
-        const categoriasDestacadas = ["Arreglos Premium", "Amor y Amistad", "Día de la Madre", "Bodas", "San Valentín"];
-        let productosDestacados = productosVisibles.filter(p => categoriasDestacadas.includes(p.categoria));
-        if (productosDestacados.length < 5) {
-          productosDestacados = productosVisibles.slice(0, 5);
-        }
-
-        const inner = document.getElementById('carousel-inner');
-        inner.innerHTML = productosDestacados.map(p => `
-          <div class="carousel-item">
-            <img src="${p.foto?.trim() || 'https://via.placeholder.com/800x300/f9f0f4/d1477a?text=Sin+Foto'}" alt="${p.nombre}">
-            <div class="carousel-caption">
-              <h3>${p.categoria}</h3>
-              <p>${p.nombre}</p>
-              <p class="contacto-banner">Contáctenos: 8605-3613</p>
-            </div>
-          </div>
-        `).join('');
-
-        setTimeout(() => {
-          const first = document.querySelector('.carousel-item');
-          if (first) first.classList.add('active');
-        }, 100);
-      } catch (err) {
-        console.error('Error al cargar el banner:', err);
-      }
+function renderCarousel() {
+  const banners = [
+    {
+      img: "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/amor-y-amistad/IMG_5816.jpeg",
+      category: "Amor y Amistad"
+    },
+    {
+      img: "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/arreglos/IMG_5825.jpeg",
+      category: "Día de la Madre"
+    },
+    {
+      img: "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/Baby%20shower/IMG_5817.jpeg",
+      category: "Baby Shower"
+    },
+    {
+      img: "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/bodas/BODAS.jpg",
+      category: "Bodas"
+    },
+    {
+      img: "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/Arreglos%20Premium/50.png",
+      category: "Arreglos Premium"
     }
+  ];
 
-    function rotateBanner() {
-      const items = document.querySelectorAll('.carousel-item');
-      if (items.length === 0) return;
-      items.forEach(item => item.classList.remove('active'));
-      currentBanner = (currentBanner + 1) % items.length;
-      items[currentBanner].classList.add('active');
-    }
+  const inner = document.getElementById('carousel-inner');
+  inner.innerHTML = banners.map(b => `
+    <a href="#${encodeURIComponent(b.category)}" class="carousel-link">
+      <div class="carousel-item">
+        <img src="${b.img}" alt="${b.category}">
+        <div class="carousel-caption">
+          <h3>${b.category}</h3>
+          <p class="contacto-banner">Contáctenos: WP: 8605-3613</p>
+        </div>
+      </div>
+    </a>
+  `).join('');
+
+  // Activar primer banner
+  setTimeout(() => {
+    const first = document.querySelector('.carousel-item');
+    if (first) first.parentElement.classList.add('active');
+  }, 100);
+}
 
     // Catálogo
     async function renderCatalogo() {
@@ -275,3 +280,4 @@ Catálogo: https://krisarias1990.github.io/Florister-a-Santa-B-rbara
   </script>
 </body>
 </html>
+
