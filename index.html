@@ -239,7 +239,6 @@ function renderCarousel() {
                     <h3>${p.nombre}</h3>
                     <p class="descripcion">${p.descripcion || ''}</p>
                     <p class="precio">₡${precioActual.toLocaleString()}</p>
-                    <p class="contacto-producto">Contáctenos: WP: 8605-3613</p>
                     <button class="btn-pedir" onclick='generarPedido(${JSON.stringify(p).replace(/'/g, "\\'")}, ${precioActual})'>
                       📩 Enviar pedido por WhatsApp
                     </button>
@@ -280,6 +279,7 @@ function renderCarousel() {
   </script>
 </body>
 </html>
+
 
 
 
