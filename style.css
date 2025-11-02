@@ -397,3 +397,14 @@ footer {
   .btn-inicio { bottom: 80px; right: 10px; }
   .logo { width: 120px; }
 }
+
+.whatsapp-flotante::before {
+  content: "💬";
+  font-size: 1.8rem;
+}
+
+/* Asegura que emojis se vean en todos los navegadores */
+.whatsapp-flotante {
+  font-family: 'Segoe UI Emoji', 'Apple Color Emoji', sans-serif;
+}
+
