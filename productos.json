@@ -1,4 +1,5 @@
 [
+  [
   {
     "id": "amor_001",
     "nombre": "A135 - Amor y Amistad",
@@ -6,7 +7,8 @@
     "categoria": "Amor y Amistad",
     "precioBaja": 35783,
     "precioAlta": 69683,
-    "foto": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/amor-y-amistad/IMG_5819.jpeg",
+    "foto_thumb": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/amor-y-amistad/thumb/IMG_5819_thumb.jpg",
+    "foto_full": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/amor-y-amistad/full/IMG_5819.jpeg",
     "disponible": true
   },
   {
@@ -16,9 +18,11 @@
     "categoria": "Arreglos Premium",
     "precioBaja": 20000,
     "precioAlta": 35000,
-    "foto": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/9ed321c8d270278e680e95fb6907174687b646ed/flores/Arreglos%20Premium/50.png",
+    "foto_thumb": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/Arreglos%20Premium/thumb/50_thumb.jpg",
+    "foto_full": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/Arreglos%20Premium/full/50.png",
     "disponible": true
   },
+  // ... (agrega el resto con el mismo formato)
   {
     "id": "prod_1761792866485",
     "nombre": "Arreglos Premium",
