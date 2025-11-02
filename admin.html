@@ -196,4 +196,214 @@
     }
 
     function previsualizarFoto() {
-      const
+      const url = document.getElementById('fotoUrl').value.trim();
+      const img = document.getElementById('fotoPreview');
+      if (url) {
+        img.src = url;
+        img.classList.remove('hidden');
+      } else {
+        img.classList.add('hidden');
+      }
+    }
+
+    // === PRODUCTOS ===
+    function cargarProductos() {
+      const data = localStorage.getItem('productosFloristeria');
+      return data ? JSON.parse(data) : [];
+    }
+
+    function guardarProducto() {
+      const id = document.getElementById('productoId').value;
+      const nombre = document.getElementById('nombre').value.trim();
+      const descripcion = document.getElementById('descripcion').value.trim();
+      const categoria = document.getElementById('categoria').value;
+      const precioBaja = parseFloat(document.getElementById('precioBaja').value);
+      const precioAlta = parseFloat(document.getElementById('precioAlta').value);
+      const disponible = document.getElementById('disponible').checked;
+      const foto = document.getElementById('fotoUrl').value.trim();
+
+      if (!nombre || !categoria || isNaN(precioBaja) || isNaN(precioAlta)) {
+        mostrarToast('Completa todos los campos obligatorios', 'danger');
+        return;
+      }
+
+      const producto = { id: id || 'prod_' + Date.now(), nombre, descripcion, categoria, precioBaja, precioAlta, foto, disponible };
+      let productos = cargarProductos();
+      const index = productos.findIndex(p => p.id === producto.id);
+      if (index >= 0) productos[index] = producto;
+      else productos.push(producto);
+
+      localStorage.setItem('productosFloristeria', JSON.stringify(productos));
+      mostrarToast(id ? 'Producto actualizado' : 'Producto agregado');
+      limpiarForm();
+      cargarYMostrarProductos();
+    }
+
+    function editarProducto(producto) {
+      document.getElementById('productoId').value = producto.id;
+      document.getElementById('nombre').value = producto.nombre;
+      document.getElementById('descripcion').value = producto.descripcion || '';
+      document.getElementById('categoria').value = producto.categoria;
+      document.getElementById('precioBaja').value = producto.precioBaja;
+      document.getElementById('precioAlta').value = producto.precioAlta;
+      document.getElementById('disponible').checked = producto.disponible !== false;
+      document.getElementById('fotoUrl').value = producto.foto || '';
+      previsualizarFoto();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function eliminarProducto(id) {
+      if (!confirm('¿Eliminar este producto?')) return;
+      let productos = cargarProductos().filter(p => p.id !== id);
+      localStorage.setItem('productosFloristeria', JSON.stringify(productos));
+      mostrarToast('Producto eliminado', 'danger');
+      cargarYMostrarProductos();
+    }
+
+    function limpiarForm() {
+      document.querySelectorAll('#productoId, #nombre, #descripcion, #precioBaja, #precioAlta, #fotoUrl').forEach(el => el.value = '');
+      document.getElementById('disponible').checked = true;
+      document.getElementById('fotoPreview').classList.add('hidden');
+    }
+
+    // === SELECTS ===
+    function llenarSelects() {
+      ['categoria', 'categoriaIntercambio', 'filtroCategoria'].forEach(id => {
+        const sel = document.getElementById(id);
+        sel.innerHTML = id === 'filtroCategoria' ? '<option value="">Todas</option>' : '';
+        CATEGORIAS.forEach(cat => {
+          const opt = new Option(cat, cat);
+          sel.add(opt);
+        });
+      });
+    }
+
+    // === FILTROS Y LISTA ===
+    function cargarYMostrarProductos() {
+      let productos = cargarProductos();
+      const filtro = document.getElementById('filtroCategoria').value;
+      if (filtro) productos = productos.filter(p => p.categoria === filtro);
+
+      const cont = document.getElementById('listaProductos');
+      cont.innerHTML = `
+        <h2>Productos (${productos.length})</h2>
+        ${productos.length ? '' : '<p style="text-align:center; color:#888;">No hay productos.</p>'}
+      `;
+
+      productos.forEach(p => {
+        const item = document.createElement('div');
+        item.className = 'producto-item';
+        item.innerHTML = `
+          <strong>${p.nombre}</strong> | ${p.categoria}<br>
+          Baja: ₡${p.precioBaja.toLocaleString()} | Alta: ₡${p.precioAlta.toLocaleString()} 
+          | ${p.disponible ? 'Visible' : 'Oculto'}
+          ${p.descripcion ? `<br><small>${p.descripcion.substring(0,80)}...</small>` : ''}
+          <div class="producto-actions">
+            <button class="btn-info btn-sm" onclick='editarProducto(${JSON.stringify(p)})'>Editar</button>
+            <button class="btn-danger btn-sm" onclick="eliminarProducto('${p.id}')">Eliminar</button>
+          </div>
+        `;
+        cont.appendChild(item);
+      });
+    }
+
+    // === INTERCAMBIO DE PRECIOS ===
+    function intercambiarPorCategoria() {
+      const cat = document.getElementById('categoriaIntercambio').value;
+      if (!cat) return mostrarToast('Selecciona una categoría', 'danger');
+      if (!confirm(`¿Intercambiar precios en "${cat}"?`)) return;
+
+      let productos = cargarProductos();
+      let modificados = 0;
+      productos = productos.map(p => {
+        if (p.categoria === cat) {
+          modificados++;
+          return { ...p, precioBaja: p.precioAlta, precioAlta: p.precioBaja };
+        }
+        return p;
+      });
+
+      if (!modificados) return mostrarToast('No hay productos en esta categoría', 'danger');
+      localStorage.setItem('productosFloristeria', JSON.stringify(productos));
+      mostrarToast(`Precios intercambiados en "${cat}"`);
+      cargarYMostrarProductos();
+    }
+
+    function intercambiarTodasCategorias() {
+      if (!confirm('¿Intercambiar TODOS los precios del catálogo?')) return;
+      let productos = cargarProductos();
+      if (!productos.length) return mostrarToast('No hay productos', 'danger');
+
+      productos = productos.map(p => ({ ...p, precioBaja: p.precioAlta, precioAlta: p.precioBaja }));
+      localStorage.setItem('productosFloristeria', JSON.stringify(productos));
+      mostrarToast('Precios intercambiados en todo el catálogo');
+      cargarYMostrarProductos();
+    }
+
+    // === CATEGORÍAS BLOQUEADAS ===
+    function cargarGestionCategorias() {
+      const cont = document.getElementById('gestionCategorias');
+      const bloqueadas = JSON.parse(localStorage.getItem('categoriasBloqueadas') || '[]');
+      cont.innerHTML = CATEGORIAS.map(cat => {
+        const checked = !bloqueadas.includes(cat);
+        return `
+          <div style="display:flex; align-items:center; margin:0.4rem 0; padding:0.3rem; background:#fff; border-radius:6px;">
+            <input type="checkbox" id="cat-${btoa(cat)}" ${checked ? 'checked' : ''}>
+            <label for="cat-${btoa(cat)}" style="flex:1; margin:0 0.5rem; cursor:pointer;">${cat}</label>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function guardarCategoriasBloqueadas() {
+      const bloqueadas = CATEGORIAS.filter(cat => {
+        const chk = document.getElementById(`cat-${btoa(cat)}`);
+        return chk && !chk.checked;
+      });
+      localStorage.setItem('categoriasBloqueadas', JSON.stringify(bloqueadas));
+      mostrarToast('Categorías actualizadas');
+    }
+
+    // === RESPALDO ===
+    function exportarBackup() {
+      const productos = cargarProductos();
+      const json = JSON.stringify(productos, null, 2);
+      const blob = new Blob([json], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `backup-floristeria-${new Date().toISOString().slice(0,10)}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+      mostrarToast('Respaldo descargado');
+    }
+
+    function importarBackup(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = ev => {
+        try {
+          const data = JSON.parse(ev.target.result);
+          localStorage.setItem('productosFloristeria', JSON.stringify(data));
+          mostrarToast('Respaldo importado');
+          cargarYMostrarProductos();
+        } catch (err) {
+          mostrarToast('Archivo inválido', 'danger');
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    // === INICIO ===
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Enter' && !document.getElementById('panelPrincipal').classList.contains('hidden')) {
+        const focused = document.activeElement;
+        if (focused.tagName === 'INPUT' || focused.tagName === 'TEXTAREA') {
+          if (focused.id === 'adminPass') verificarLogin();
+        }
+      }
+    });
+  </script>
+</body>
+</html>
