@@ -11,7 +11,6 @@ body {
   line-height: 1.6;
 }
 
-/* Header */
 header {
   background: white;
   padding: 1rem;
@@ -74,7 +73,6 @@ nav a:hover {
   color: white;
 }
 
-/* Main */
 main {
   max-width: 1200px;
   margin: 2rem auto;
@@ -164,7 +162,6 @@ main {
   background: #b03560;
 }
 
-/* Carousel */
 .carousel {
   position: relative;
   width: 100%;
@@ -279,7 +276,6 @@ main {
 .carousel-prev { margin-left: 15px; }
 .carousel-next { margin-right: 15px; }
 
-/* Lightbox */
 .lightbox {
   display: none;
   position: fixed;
@@ -325,7 +321,6 @@ main {
   color: #ddd;
 }
 
-/* Botones flotantes */
 .whatsapp-flotante {
   position: fixed;
   bottom: 20px;
@@ -360,7 +355,6 @@ main {
   box-shadow: 0 4px 12px rgba(209,71,122,0.4);
 }
 
-/* Footer */
 footer {
   background: #2e8b57;
   color: white;
@@ -396,7 +390,6 @@ footer {
   color: #ccc;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .carousel { height: 220px; }
   .carousel-caption h3 { font-size: 1.3rem; }
