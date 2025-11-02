@@ -11,7 +11,7 @@
   <header>
     <div class="header-content">
       <img src="assets/logo.png" alt="Floristería Santa Bárbara" class="logo">
-      <p class="tasa-cambio">💱 Tasa de cambio: $1 = ₡504 </p>
+      <p class="tasa-cambio">Tasa de cambio: $1 = ₡504</p>
     </div>
     <nav>
       <ul id="menuCategorias"></ul>
@@ -21,10 +21,15 @@
   <!-- Banner dinámico -->
   <section class="carousel">
     <div class="carousel-inner" id="carousel-inner"></div>
+    <div class="carousel-indicators" id="carousel-indicators"></div>
+    <div class="carousel-controls">
+      <button class="carousel-prev" onclick="showSlide(currentIndex - 1)">❮</button>
+      <button class="carousel-next" onclick="showSlide(currentIndex + 1)">❯</button>
+    </div>
   </section>
 
   <main id="catalogo">
-    <p style="text-align:center; padding:2rem; color:#888;"> Catálogo </p>
+    <p style="text-align:center; padding:2rem; color:#888;">Cargando catálogo...</p>
   </main>
 
   <!-- Lightbox minimalista -->
@@ -37,38 +42,38 @@
   </div>
 
   <!-- Botones flotantes -->
-  <a href="https://wa.me/50686053613" class="whatsapp-flotante" target="_blank">💬</a>
+  <a href="https://wa.me/50686053613" class="whatsapp-flotante" target="_blank">WhatsApp</a>
   <button class="btn-inicio" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑ Inicio</button>
 
-  <!-- Pie de página actualizado -->
+  <!-- Pie de página -->
   <footer>
     <div class="footer-content">
       <div class="footer-section">
-  <h3>Contáctenos</h3>
-  <p>📱 WhatsApp: <a href="https://wa.me/50686053613" target="_blank" style="color:#d1477a; text-decoration:underline;">8605-3613</a></p>
-  <p>📍 <a href="https://www.google.com/maps?q=Santa+Bárbara,+Heredia,+Costa+Rica" target="_blank" style="color:#d1477a; text-decoration:underline;">Santa Bárbara, Heredia</a></p>
-  <p style="font-size:0.85rem; margin-top:0.3rem;">
-    <a href="https://waze.com/ul?q=Santa+Bárbara,+Heredia,+Costa+Rica" target="_blank" style="color:#d1477a; margin-right:0.8rem;">Waze</a> |
-    <a href="https://www.google.com/maps?q=Santa+Bárbara,+Heredia,+Costa+Rica" target="_blank" style="color:#d1477a;">Google Maps</a>
-  </p>
-  <p>🕒 Horario: Lunes a Sábado 8am-6pm</p>
-</div>
+        <h3>Contáctenos</h3>
+        <p>WhatsApp: <a href="https://wa.me/50686053613" target="_blank" style="color:#d1477a; text-decoration:underline;">8605-3613</a></p>
+        <p><a href="https://www.google.com/maps?q=Santa+Bárbara,+Heredia,+Costa+Rica" target="_blank" style="color:#d1477a; text-decoration:underline;">Santa Bárbara, Heredia</a></p>
+        <p style="font-size:0.85rem; margin-top:0.3rem;">
+          <a href="https://waze.com/ul?q=Santa+Bárbara,+Heredia,+Costa+Rica" target="_blank" style="color:#d1477a; margin-right:0.8rem;">Waze</a> |
+          <a href="https://www.google.com/maps?q=Santa+Bárbara,+Heredia,+Costa+Rica" target="_blank" style="color:#d1477a;">Google Maps</a>
+        </p>
+        <p>Horario: Lunes a Sábado 8am-6pm</p>
+      </div>
       <div class="footer-section">
         <h3>Acerca de</h3>
         <p>Floristería Santa Bárbara: más de 10 años creando momentos inolvidables.</p>
       </div>
       <div class="footer-section">
-  <h3>Redes Sociales</h3>
-  <p>📸 <a href="https://www.instagram.com/floristeriasantabarbara" target="_blank" style="color:#d1477a; text-decoration:underline;">Instagram</a></p>
-  <p>📘 <a href="https://www.facebook.com/FloristeriaSantaBarbara" target="_blank" style="color:#d1477a; text-decoration:underline;">Facebook</a></p>
-  <p>🎵 <a href="https://www.tiktok.com/@floristeriasantabarbara" target="_blank" style="color:#d1477a; text-decoration:underline;">TikTok</a></p>
+        <h3>Redes Sociales</h3>
+        <p>Instagram: <a href="https://www.instagram.com/floristeriasantabarbara" target="_blank" style="color:#d1477a; text-decoration:underline;">@floristeriasantabarbara</a></p>
+        <p>Facebook: <a href="https://www.facebook.com/FloristeriaSantaBarbara" target="_blank" style="color:#d1477a; text-decoration:underline;">Floristería Santa Bárbara</a></p>
+        <p>TikTok: <a href="https://www.tiktok.com/@floristeriasantabarbara" target="_blank" style="color:#d1477a; text-decoration:underline;">@floristeriasantabarbara</a></p>
       </div>
       <div class="footer-section">
         <h3>Formas de Pago</h3>
         <p>✅ SINPE Móvil</p>
-        <p>💳 Datafono (todas las tarjetas)</p>
-        <p>🔗 Link de pago</p>
-        <p>🏦 Transferencia bancaria</p>
+        <p>Datáfono (todas las tarjetas)</p>
+        <p>Link de pago</p>
+        <p>Transferencia bancaria</p>
       </div>
     </div>
     <div class="footer-bottom">
@@ -76,7 +81,9 @@
     </div>
   </footer>
 
+  <script src="productos.json" type="application/json" id="productos-data"></script>
   <script>
+    // === CONFIGURACIÓN GLOBAL ===
     const temporadasAltas = [
       { inicio: "2025-02-01", fin: "2025-02-15" },
       { inicio: "2025-05-01", fin: "2025-05-15" },
@@ -84,62 +91,48 @@
     ];
 
     function enTemporadaAlta(hoy) {
-      return temporadasAltas.some(t => {
-        const ini = new Date(t.inicio);
-        const fin = new Date(t.fin);
-        return hoy >= ini && hoy <= fin;
-      });
+      return temporadasAltas.some(t => hoy >= new Date(t.inicio) && hoy <= new Date(t.fin));
     }
 
+    // === WHATSAPP CON IMAGEN EN MINIATURA ===
     function generarPedido(producto, precioMostrado) {
-      const mensaje = 
-`¡Hola! Quisiera pedir el siguiente arreglo:
+      const mensaje = `
+¡Hola! Quisiera pedir el siguiente arreglo:
 
 Producto: ${producto.nombre}
 Categoría: ${producto.categoria}
 Precio: ₡${precioMostrado.toLocaleString()}
-Fecha: ${new Date().toLocaleDateString('es-CR', { day: '2-digit', month: '2-digit', year: 'numeric' })}
-
+Fecha: ${new Date().toLocaleDateString('es-CR')}
 Descripción: ${producto.descripcion || '—'}
 
-🖼️ Imagen del arreglo: ${producto.foto?.trim() || ''}
+Imagen: ${producto.foto}
 
-Por favor, confirmar disponibilidad.
+Por favor confirmar disponibilidad.
 Gracias 🌹
 
-Catálogo: https://krisarias1990.github.io/Florister-a-Santa-B-rbara  
-
-— Enviado desde Floristería Santa Bárbara`;
+Catálogo: https://krisarias1990.github.io/Florister-a-Santa-B-rbara
+— Enviado desde Floristería Santa Bárbara`.trim();
 
       const numero = '50686053613';
-      const urlWhatsApp = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
-      const esMovil = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
 
+      const esMovil = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
       if (esMovil) {
-        window.open(urlWhatsApp, '_blank');
+        window.open(url, '_blank');
       } else {
         if (navigator.clipboard) {
           navigator.clipboard.writeText(mensaje).then(() => {
-            alert('✅ Mensaje copiado.\n\nAbre WhatsApp Web y pégalo (Ctrl+V).\n\nLa imagen se verá al hacer clic en el enlace.');
-          }).catch(() => {
-            alert('📋 Copia manualmente este mensaje y pégalo en WhatsApp Web:\n\n' + mensaje);
+            alert('Mensaje copiado. Pégalo en WhatsApp Web (Ctrl+V). La imagen aparecerá al hacer clic en el enlace.');
           });
         } else {
-          const textarea = document.createElement('textarea');
-          textarea.value = mensaje;
-          textarea.style.position = 'fixed';
-          textarea.style.opacity = '0';
-          document.body.appendChild(textarea);
-          textarea.select();
-          document.execCommand('copy');
-          document.body.removeChild(textarea);
-          alert('📋 Mensaje copiado.\n\nAbre WhatsApp Web y pégalo (Ctrl+V).\n\nLa imagen se verá al hacer clic en el enlace.');
+          prompt('Copia este mensaje y pégalo en WhatsApp Web:', mensaje);
         }
       }
     }
 
+    // === LIGHTBOX ===
     function abrirLightbox(producto) {
-      document.getElementById('lightbox-img').src = producto.foto?.trim() || '';
+      document.getElementById('lightbox-img').src = producto.foto;
       document.getElementById('lightbox-nombre').textContent = producto.nombre;
       document.getElementById('lightbox-categoria').textContent = producto.categoria;
       document.getElementById('lightbox').classList.add('active');
@@ -151,96 +144,106 @@ Catálogo: https://krisarias1990.github.io/Florister-a-Santa-B-rbara
       document.body.style.overflow = '';
     }
 
-function renderCarousel() {
-  const banners = [
-    {
-      img: "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/amor-y-amistad/IMG_5816.jpeg",
-      category: "Amor y Amistad"
-    },
-    {
-      img: "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/arreglos/IMG_5825.jpeg",
-      category: "Día de la Madre"
-    },
-    {
-      img: "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/Baby%20shower/IMG_5817.jpeg",
-      category: "Baby Shower"
-    },
-    {
-      img: "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/bodas/BODAS.jpg",
-      category: "Bodas"
-    },
-    {
-      img: "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/Arreglos%20Premium/50.png",
-      category: "Arreglos Premium"
+    // === CARRUSEL ===
+    let currentIndex = 0;
+    let autoSlideInterval;
+
+    const banners = [
+      { img: "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/amor-y-amistad/IMG_5816.jpeg", category: "Amor y Amistad" },
+      { img: "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/arreglos/IMG_5825.jpeg", category: "Día de la Madre" },
+      { img: "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/Baby%20shower/IMG_5817.jpeg", category: "Baby Shower" },
+      { img: "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/bodas/BODAS.jpg", category: "Bodas" },
+      { img: "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/Arreglos%20Premium/50.png", category: "Arreglos Premium" }
+    ];
+
+    function renderCarousel() {
+      const inner = document.getElementById('carousel-inner');
+      const indicators = document.getElementById('carousel-indicators');
+
+      inner.innerHTML = banners.map((b, i) => `
+        <a href="#${encodeURIComponent(b.category)}" class="carousel-link">
+          <div class="carousel-item">
+            <img src="${b.img}" alt="${b.category}" loading="lazy">
+            <div class="carousel-caption">
+              <h3>${b.category}</h3>
+              <p class="contacto-banner">WhatsApp: 8605-3613</p>
+            </div>
+          </div>
+        </a>
+      `).join('');
+
+      indicators.innerHTML = banners.map((_, i) => `
+        <span data-index="${i}" ${i === 0 ? 'class="active"' : ''}></span>
+      `).join('');
+
+      indicators.querySelectorAll('span').forEach(dot => {
+        dot.addEventListener('click', () => goToSlide(parseInt(dot.dataset.index)));
+      });
+
+      showSlide(0);
     }
-  ];
 
-  const inner = document.getElementById('carousel-inner');
-  inner.innerHTML = banners.map(b => `
-    <a href="#${encodeURIComponent(b.category)}" class="carousel-link">
-      <div class="carousel-item">
-        <img src="${b.img}" alt="${b.category}">
-        <div class="carousel-caption">
-          <h3>${b.category}</h3>
-          <p class="contacto-banner">Contáctenos: WP: 8605-3613</p>
-        </div>
-      </div>
-    </a>
-  `).join('');
+    function showSlide(index) {
+      const inner = document.getElementById('carousel-inner');
+      const dots = document.querySelectorAll('.carousel-indicators span');
+      const total = dots.length;
 
-  // Activar primer banner
-  setTimeout(() => {
-    const first = document.querySelector('.carousel-item');
-    if (first) first.parentElement.classList.add('active');
-  }, 100);
-}
+      if (index >= total) index = 0;
+      if (index < 0) index = total - 1;
 
-    // Catálogo
+      currentIndex = index;
+      inner.style.transform = `translateX(-${index * 100}%)`;
+      dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+    }
+
+    function goToSlide(index) {
+      stopAutoSlide();
+      showSlide(index);
+      startAutoSlide();
+    }
+
+    function startAutoSlide() {
+      autoSlideInterval = setInterval(() => showSlide(currentIndex + 1), 5000);
+    }
+
+    function stopAutoSlide() {
+      clearInterval(autoSlideInterval);
+    }
+
+    // === CATÁLOGO ===
     async function renderCatalogo() {
       try {
         const response = await fetch('productos.json?_=' + Date.now());
         const productos = await response.json();
-        const categoriasBloqueadas = JSON.parse(localStorage.getItem('categoriasBloqueadas') || '[]');
-        const productosVisibles = productos.filter(p => 
-          p.disponible !== false && !categoriasBloqueadas.includes(p.categoria)
-        );
+        const hoy = new Date();
+        const esAlta = enTemporadaAlta(hoy);
 
-        if (productosVisibles.length === 0) {
-          document.getElementById('catalogo').innerHTML = '<p style="text-align:center; padding:2rem; color:#888;">No hay productos disponibles.</p>';
-          return;
-        }
-
-        const categoriasUnicas = [...new Set(productosVisibles.map(p => p.categoria))];
+        const categoriasUnicas = [...new Set(productos.map(p => p.categoria))];
         const menu = document.getElementById('menuCategorias');
-        const catalogo = document.getElementById('catalogo');
-
-        menu.innerHTML = categoriasUnicas.map(cat => 
-          `<li><a href="#${encodeURIComponent(cat)}">${cat}</a></li>`
-        ).join('');
+        menu.innerHTML = categoriasUnicas.map(cat => `<li><a href="#${encodeURIComponent(cat)}">${cat}</a></li>`).join('');
 
         const grupos = {};
-        productosVisibles.forEach(p => {
+        productos.forEach(p => {
           if (!grupos[p.categoria]) grupos[p.categoria] = [];
           grupos[p.categoria].push(p);
         });
 
+        const catalogo = document.getElementById('catalogo');
         catalogo.innerHTML = Object.entries(grupos).map(([cat, prods]) => `
           <section class="categoria" id="${encodeURIComponent(cat)}">
             <h2>${cat}</h2>
             <div class="productos">
               ${prods.map(p => {
-                const precioActual = enTemporadaAlta(new Date()) ? p.precioAlta : p.precioBaja;
-                const fotoUrl = p.foto?.trim() || 'https://via.placeholder.com/240x180/f9f0f4/d1477a?text=Sin+Foto';
+                const precio = esAlta ? p.precioAlta : p.precioBaja;
+                const foto = p.foto?.trim() || 'https://via.placeholder.com/240x180/f9f0f4/d1477a?text=Sin+Foto';
                 return `
                   <div class="producto">
-                    <img src="${fotoUrl}" alt="${p.nombre}" 
-                         data-product='${JSON.stringify(p).replace(/'/g, "&#39;").replace(/"/g, "&quot;")}' 
-                         class="producto-img">
+                    <img src="${foto}" alt="${p.nombre}" class="producto-img" onclick='abrirLightbox(${JSON.stringify(p)})'>
                     <h3>${p.nombre}</h3>
                     <p class="descripcion">${p.descripcion || ''}</p>
-                    <p class="precio">₡${precioActual.toLocaleString()}</p>
-                    <button class="btn-pedir" onclick='generarPedido(${JSON.stringify(p).replace(/'/g, "\\'")}, ${precioActual})'>
-                      📩 Enviar pedido por WhatsApp
+                    <p class="precio">₡${precio.toLocaleString()}</p>
+                    <button class="btn-pedir" onclick='generarPedido(${JSON.stringify(p)}, ${precio})'>
+                      Enviar pedido por WhatsApp
                     </button>
                   </div>
                 `;
@@ -249,37 +252,21 @@ function renderCarousel() {
           </section>
         `).join('');
       } catch (err) {
-        document.getElementById('catalogo').innerHTML = '<p style="text-align:center; padding:2rem; color:red;">Error al cargar el catálogo.</p>';
+        document.getElementById('catalogo').innerHTML = '<p style="text-align:center; color:red;">Error al cargar el catálogo.</p>';
         console.error(err);
       }
     }
 
-    document.addEventListener('click', function(e) {
-      if (e.target.classList.contains('producto-img')) {
-        const productStr = e.target.getAttribute('data-product');
-        if (productStr) {
-          try {
-            const producto = JSON.parse(
-              productStr.replace(/&#39;/g, "'").replace(/&quot;/g, '"')
-            );
-            abrirLightbox(producto);
-          } catch (err) {
-            console.error('Error al abrir lightbox:', err);
-            alert('No se pudo cargar la imagen.');
-          }
-        }
-      }
-    });
-
+    // === INICIO ===
     document.addEventListener('DOMContentLoaded', () => {
       renderCarousel();
       renderCatalogo();
-      setInterval(rotateBanner, 5000);
+      startAutoSlide();
+
+      const carousel = document.querySelector('.carousel');
+      carousel.addEventListener('mouseenter', stopAutoSlide);
+      carousel.addEventListener('mouseleave', startAutoSlide);
     });
   </script>
 </body>
 </html>
-
-
-
-
