@@ -10,7 +10,7 @@
 <body>
   <header>
     <div class="header-content">
-      <img src="assets/logo.jpeg" alt="Floristería Santa Bárbara" class="logo">
+      <img src="assets/logo.png" alt="Floristería Santa Bárbara" class="logo">
       <p class="tasa-cambio">Tasa de cambio: $1 = ₡504</p>
     </div>
     <nav>
@@ -23,8 +23,8 @@
     <div class="carousel-inner" id="carousel-inner"></div>
     <div class="carousel-indicators" id="carousel-indicators"></div>
     <div class="carousel-controls">
-      <button class="carousel-prev" onclick="showSlide(currentIndex - 1)">Previous</button>
-      <button class="carousel-next" onclick="showSlide(currentIndex + 1)">Next</button>
+      <button class="carousel-prev" onclick="showSlide(currentIndex - 1)">❮</button>
+      <button class="carousel-next" onclick="showSlide(currentIndex + 1)">❯</button>
     </div>
   </section>
 
@@ -42,7 +42,7 @@
   </div>
 
   <!-- Botones flotantes -->
-  <a href="https://wa.me/50686053613" class="whatsapp-flotante" target="_blank">WhatsApp</a>
+  <a href="https://wa.me/50686053613" class="whatsapp-flotante" target="_blank">💬</a>
   <button class="btn-inicio" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑ Inicio</button>
 
   <!-- Footer -->
@@ -91,6 +91,19 @@
 
     function enTemporadaAlta(hoy) {
       return temporadasAltas.some(t => hoy >= new Date(t.inicio) && hoy <= new Date(t.fin));
+    }
+
+    // === CARGA DE PRODUCTOS (JSON + LOCALSTORAGE FALLBACK) ===
+    async function cargarProductos() {
+      try {
+        const response = await fetch('productos.json?_=' + Date.now());
+        if (response.ok) return await response.json();
+        throw new Error('No se pudo cargar productos.json');
+      } catch (err) {
+        console.warn('Usando localStorage como fallback:', err);
+        const localData = localStorage.getItem('productosFloristeria');
+        return localData ? JSON.parse(localData) : [];
+      }
     }
 
     // === WHATSAPP CON MINIATURA + ENLACE A CATEGORÍA ===
@@ -146,7 +159,7 @@ Gracias
       document.body.style.overflow = '';
     }
 
-    // === CARRUSEL ===
+    // === CARRUSEL (SIN CAMBIOS) ===
     let currentIndex = 0;
     let autoSlideInterval;
 
@@ -212,11 +225,15 @@ Gracias
       clearInterval(autoSlideInterval);
     }
 
-    // === CATÁLOGO ===
+    // === CATÁLOGO CORREGIDO (SIN ONCLICK INLINE) ===
     async function renderCatalogo() {
       try {
-        const response = await fetch('productos.json?_=' + Date.now());
-        const productos = await response.json();
+        const productos = await cargarProductos();
+        if (productos.length === 0) {
+          document.getElementById('catalogo').innerHTML = '<p style="text-align:center; padding:2rem; color:#888;">No hay productos disponibles.</p>';
+          return;
+        }
+
         const hoy = new Date();
         const esAlta = enTemporadaAlta(hoy);
 
@@ -237,16 +254,16 @@ Gracias
             <div class="productos">
               ${prods.map(p => {
                 const precio = esAlta ? p.precioAlta : p.precioBaja;
-                const fotoThumb = p.foto_thumb || p.foto_full || p.foto;
-                const fotoFull = p.foto_full || p.foto;
+                const fotoThumb = p.foto_thumb || p.foto_full || p.foto || 'https://via.placeholder.com/240x180/f9f0f4/d1477a?text=Sin+Foto';
+                const fotoFull = p.foto_full || p.foto || fotoThumb;
+                const productoData = JSON.stringify({ ...p, foto_full: fotoFull }).replace(/"/g, '&quot;');
                 return `
                   <div class="producto">
-                    <img src="${fotoThumb}" alt="${p.nombre}" class="producto-img" 
-                         onclick='abrirLightbox({nombre:"${p.nombre}",categoria:"${p.categoria}",foto_full:"${fotoFull}"})' loading="lazy">
+                    <img src="${fotoThumb}" alt="${p.nombre}" class="producto-img" data-product='${productoData}' loading="lazy">
                     <h3>${p.nombre}</h3>
                     <p class="descripcion">${p.descripcion || ''}</p>
                     <p class="precio">₡${precio.toLocaleString()}</p>
-                    <button class="btn-pedir" onclick='generarPedido(${JSON.stringify(p)}, ${precio})'>
+                    <button class="btn-pedir" data-product='${productoData}' data-precio='${precio}'>
                       Enviar por WhatsApp
                     </button>
                   </div>
@@ -255,9 +272,36 @@ Gracias
             </div>
           </section>
         `).join('');
+
+        // EVENTOS DELEGADOS (CORREGIDO)
+        document.addEventListener('click', function(e) {
+          if (e.target.classList.contains('producto-img')) {
+            const productStr = e.target.getAttribute('data-product');
+            if (productStr) {
+              try {
+                const producto = JSON.parse(productStr.replace(/&quot;/g, '"'));
+                abrirLightbox(producto);
+              } catch (err) {
+                console.error('Error al abrir lightbox:', err);
+              }
+            }
+          } else if (e.target.classList.contains('btn-pedir')) {
+            const productStr = e.target.getAttribute('data-product');
+            const precio = parseFloat(e.target.getAttribute('data-precio'));
+            if (productStr && !isNaN(precio)) {
+              try {
+                const producto = JSON.parse(productStr.replace(/&quot;/g, '"'));
+                generarPedido(producto, precio);
+              } catch (err) {
+                console.error('Error al generar pedido:', err);
+              }
+            }
+          }
+        });
+
       } catch (err) {
-        document.getElementById('catalogo').innerHTML = '<p style="text-align:center; color:red;">Error al cargar el catálogo.</p>';
-        console.error(err);
+        document.getElementById('catalogo').innerHTML = '<p style="text-align:center; color:red; padding:2rem;">Error al cargar el catálogo. Intenta recargar la página.</p>';
+        console.error('Error en renderCatalogo:', err);
       }
     }
 
@@ -268,11 +312,11 @@ Gracias
       startAutoSlide();
 
       const carousel = document.querySelector('.carousel');
-      carousel.addEventListener('mouseenter', stopAutoSlide);
-      carousel.addEventListener('mouseleave', startAutoSlide);
+      if (carousel) {
+        carousel.addEventListener('mouseenter', stopAutoSlide);
+        carousel.addEventListener('mouseleave', startAutoSlide);
+      }
     });
   </script>
 </body>
 </html>
-
-
