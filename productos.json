@@ -1,5 +1,4 @@
 [
-  [
   {
     "id": "amor_001",
     "nombre": "A135 - Amor y Amistad",
@@ -18,11 +17,10 @@
     "categoria": "Arreglos Premium",
     "precioBaja": 20000,
     "precioAlta": 35000,
-    "foto_thumb": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/Arreglos%20Premium/thumb/50_thumb.jpg",
+    "foto_thumb": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/Arreglos%20Premium/thumb/50_thumb.png",
     "foto_full": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/Arreglos%20Premium/full/50.png",
     "disponible": true
   },
-  // ... (agrega el resto con el mismo formato)
   {
     "id": "prod_1761792866485",
     "nombre": "Arreglos Premium",
@@ -30,7 +28,8 @@
     "categoria": "Arreglos Premium",
     "precioBaja": 15000,
     "precioAlta": 25000,
-    "foto": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/9ed321c8d270278e680e95fb6907174687b646ed/flores/Arreglos%20Premium/49.png",
+    "foto_thumb": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/Arreglos%20Premium/thumb/49_thumb.png",
+    "foto_full": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/Arreglos%20Premium/full/49.png",
     "disponible": true
   },
   {
@@ -40,7 +39,8 @@
     "categoria": "Arreglos Premium",
     "precioBaja": 30000,
     "precioAlta": 45000,
-    "foto": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/9ed321c8d270278e680e95fb6907174687b646ed/flores/Arreglos%20Premium/WhatsApp%20Image%202025-04-09%20at%209.54.20%20AM.jpeg",
+    "foto_thumb": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/Arreglos%20Premium/thumb/WhatsApp%20Image%202025-04-09%20at%209.54.20%20AM_thumb.jpeg",
+    "foto_full": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/Arreglos%20Premium/full/WhatsApp%20Image%202025-04-09%20at%209.54.20%20AM.jpeg",
     "disponible": true
   },
   {
@@ -50,7 +50,8 @@
     "categoria": "Baby Shower",
     "precioBaja": 8000,
     "precioAlta": 12000,
-    "foto": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/e9ce7b5ac7b3859d583e24e4fb74bdce3507a23d/flores/Baby%20shower/cdb5301e-5d1d-40ff-bab0-2897452b8bf3.jpg",
+    "foto_thumb": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/Baby%20shower/thumb/cdb5301e-5d1d-40ff-bab0-2897452b8bf3_thumb.jpg",
+    "foto_full": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/Baby%20shower/full/cdb5301e-5d1d-40ff-bab0-2897452b8bf3.jpg",
     "disponible": true
   },
   {
@@ -60,7 +61,8 @@
     "categoria": "Bodas",
     "precioBaja": 25000,
     "precioAlta": 35000,
-    "foto": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/b90ce55db9ac8ede6bc35e5d7533e0daf5fb7fbe/10.png",
+    "foto_thumb": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/bodas/thumb/10_thumb.png",
+    "foto_full": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/bodas/full/10.png",
     "disponible": true
   },
   {
@@ -70,7 +72,8 @@
     "categoria": "Cumpleaños y Aniversarios",
     "precioBaja": 10000,
     "precioAlta": 15000,
-    "foto": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/b90ce55db9ac8ede6bc35e5d7533e0daf5fb7fbe/4.png",
+    "foto_thumb": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/cumpleanos/thumb/4_thumb.png",
+    "foto_full": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/cumpleanos/full/4.png",
     "disponible": true
   },
   {
@@ -80,7 +83,8 @@
     "categoria": "Día de la Madre",
     "precioBaja": 18000,
     "precioAlta": 28000,
-    "foto": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/arreglos/IMG_5825.jpeg",
+    "foto_thumb": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/arreglos/thumb/IMG_5825_thumb.jpeg",
+    "foto_full": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/arreglos/full/IMG_5825.jpeg",
     "disponible": true
   },
   {
@@ -90,7 +94,8 @@
     "categoria": "Ramos",
     "precioBaja": 9000,
     "precioAlta": 14000,
-    "foto": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/04908219decdc3521278e60971274bd0d5ba425b/flores/amor-y-amistad/IMG_5816.jpeg",
+    "foto_thumb": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/ramos/thumb/IMG_5816_thumb.jpeg",
+    "foto_full": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/ramos/full/IMG_5816.jpeg",
     "disponible": true
   },
   {
@@ -100,7 +105,8 @@
     "categoria": "Ramos",
     "precioBaja": 22000,
     "precioAlta": 32000,
-    "foto": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/04908219decdc3521278e60971274bd0d5ba425b/flores/amor-y-amistad/IMG_5816.jpeg",
+    "foto_thumb": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/ramos/thumb/IMG_5816_thumb.jpeg",
+    "foto_full": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/ramos/full/IMG_5816.jpeg",
     "disponible": true
   }
 ]
