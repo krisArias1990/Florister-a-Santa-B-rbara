@@ -23,8 +23,8 @@
     <div class="carousel-inner" id="carousel-inner"></div>
     <div class="carousel-indicators" id="carousel-indicators"></div>
     <div class="carousel-controls">
-      <button class="carousel-prev" onclick="showSlide(currentIndex - 1)">❮</button>
-      <button class="carousel-next" onclick="showSlide(currentIndex + 1)">❯</button>
+      <button class="carousel-prev" onclick="showSlide(currentIndex - 1)">Previous</button>
+      <button class="carousel-next" onclick="showSlide(currentIndex + 1)">Next</button>
     </div>
   </section>
 
@@ -32,7 +32,7 @@
     <p style="text-align:center; padding:2rem; color:#888;">Cargando catálogo...</p>
   </main>
 
-  <!-- Lightbox minimalista -->
+  <!-- Lightbox -->
   <div id="lightbox" class="lightbox" onclick="cerrarLightbox()">
     <img id="lightbox-img" src="" alt="Imagen del producto">
     <div class="lightbox-text">
@@ -45,7 +45,7 @@
   <a href="https://wa.me/50686053613" class="whatsapp-flotante" target="_blank">WhatsApp</a>
   <button class="btn-inicio" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑ Inicio</button>
 
-  <!-- Pie de página -->
+  <!-- Footer -->
   <footer>
     <div class="footer-content">
       <div class="footer-section">
@@ -70,7 +70,7 @@
       </div>
       <div class="footer-section">
         <h3>Formas de Pago</h3>
-        <p>✅ SINPE Móvil</p>
+        <p>SINPE Móvil</p>
         <p>Datáfono (todas las tarjetas)</p>
         <p>Link de pago</p>
         <p>Transferencia bancaria</p>
@@ -81,9 +81,8 @@
     </div>
   </footer>
 
-  <script src="productos.json" type="application/json" id="productos-data"></script>
   <script>
-    // === CONFIGURACIÓN GLOBAL ===
+    // === CONFIGURACIÓN TEMPORADA ALTA ===
     const temporadasAltas = [
       { inicio: "2025-02-01", fin: "2025-02-15" },
       { inicio: "2025-05-01", fin: "2025-05-15" },
@@ -94,45 +93,48 @@
       return temporadasAltas.some(t => hoy >= new Date(t.inicio) && hoy <= new Date(t.fin));
     }
 
-    // === WHATSAPP CON IMAGEN EN MINIATURA ===
+    // === WHATSAPP CON MINIATURA + ENLACE A CATEGORÍA ===
     function generarPedido(producto, precioMostrado) {
+      const categoriaId = encodeURIComponent(producto.categoria);
+      const enlaceCatalogo = `https://krisarias1990.github.io/Florister-a-Santa-B-rbara/#${categoriaId}`;
+      const fotoThumb = producto.foto_thumb || producto.foto_full || producto.foto;
+
       const mensaje = `
-¡Hola! Quisiera pedir el siguiente arreglo:
+¡Hola! Quisiera pedir:
 
-Producto: ${producto.nombre}
-Categoría: ${producto.categoria}
-Precio: ₡${precioMostrado.toLocaleString()}
-Fecha: ${new Date().toLocaleDateString('es-CR')}
-Descripción: ${producto.descripcion || '—'}
+*Producto:* ${producto.nombre}
+*Categoría:* ${producto.categoria}
+*Precio:* ₡${precioMostrado.toLocaleString()}
+*Fecha:* ${new Date().toLocaleDateString('es-CR')}
 
-Imagen: ${producto.foto}
+[${fotoThumb}](${enlaceCatalogo})
+
+*Descripción:* ${producto.descripcion || '—'}
+
+[Ver en catálogo →](${enlaceCatalogo})
 
 Por favor confirmar disponibilidad.
-Gracias 🌹
+Gracias
 
-Catálogo: https://krisarias1990.github.io/Florister-a-Santa-B-rbara
-— Enviado desde Floristería Santa Bárbara`.trim();
+— Floristería Santa Bárbara`.trim();
 
       const numero = '50686053613';
       const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
 
-      const esMovil = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-      if (esMovil) {
+      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
         window.open(url, '_blank');
       } else {
-        if (navigator.clipboard) {
-          navigator.clipboard.writeText(mensaje).then(() => {
-            alert('Mensaje copiado. Pégalo en WhatsApp Web (Ctrl+V). La imagen aparecerá al hacer clic en el enlace.');
-          });
-        } else {
-          prompt('Copia este mensaje y pégalo en WhatsApp Web:', mensaje);
-        }
+        navigator.clipboard?.writeText(mensaje).then(() => {
+          alert('Mensaje copiado. Pégalo en WhatsApp Web.\n\nLa imagen aparecerá pequeña y al hacer clic irá al catálogo.');
+        }).catch(() => {
+          prompt('Copia y pega en WhatsApp:', mensaje);
+        });
       }
     }
 
     // === LIGHTBOX ===
     function abrirLightbox(producto) {
-      document.getElementById('lightbox-img').src = producto.foto;
+      document.getElementById('lightbox-img').src = producto.foto_full || producto.foto;
       document.getElementById('lightbox-nombre').textContent = producto.nombre;
       document.getElementById('lightbox-categoria').textContent = producto.categoria;
       document.getElementById('lightbox').classList.add('active');
@@ -149,11 +151,11 @@ Catálogo: https://krisarias1990.github.io/Florister-a-Santa-B-rbara
     let autoSlideInterval;
 
     const banners = [
-      { img: "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/amor-y-amistad/IMG_5816.jpeg", category: "Amor y Amistad" },
-      { img: "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/arreglos/IMG_5825.jpeg", category: "Día de la Madre" },
-      { img: "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/Baby%20shower/IMG_5817.jpeg", category: "Baby Shower" },
-      { img: "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/bodas/BODAS.jpg", category: "Bodas" },
-      { img: "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/Arreglos%20Premium/50.png", category: "Arreglos Premium" }
+      { img: "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/amor-y-amistad/full/IMG_5816.jpeg", category: "Amor y Amistad" },
+      { img: "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/arreglos/full/IMG_5825.jpeg", category: "Día de la Madre" },
+      { img: "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/Baby%20shower/full/IMG_5817.jpeg", category: "Baby Shower" },
+      { img: "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/bodas/full/BODAS.jpg", category: "Bodas" },
+      { img: "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/Arreglos%20Premium/full/50.png", category: "Arreglos Premium" }
     ];
 
     function renderCarousel() {
@@ -235,15 +237,17 @@ Catálogo: https://krisarias1990.github.io/Florister-a-Santa-B-rbara
             <div class="productos">
               ${prods.map(p => {
                 const precio = esAlta ? p.precioAlta : p.precioBaja;
-                const foto = p.foto?.trim() || 'https://via.placeholder.com/240x180/f9f0f4/d1477a?text=Sin+Foto';
+                const fotoThumb = p.foto_thumb || p.foto_full || p.foto;
+                const fotoFull = p.foto_full || p.foto;
                 return `
                   <div class="producto">
-                    <img src="${foto}" alt="${p.nombre}" class="producto-img" onclick='abrirLightbox(${JSON.stringify(p)})'>
+                    <img src="${fotoThumb}" alt="${p.nombre}" class="producto-img" 
+                         onclick='abrirLightbox({nombre:"${p.nombre}",categoria:"${p.categoria}",foto_full:"${fotoFull}"})' loading="lazy">
                     <h3>${p.nombre}</h3>
                     <p class="descripcion">${p.descripcion || ''}</p>
                     <p class="precio">₡${precio.toLocaleString()}</p>
                     <button class="btn-pedir" onclick='generarPedido(${JSON.stringify(p)}, ${precio})'>
-                      Enviar pedido por WhatsApp
+                      Enviar por WhatsApp
                     </button>
                   </div>
                 `;
