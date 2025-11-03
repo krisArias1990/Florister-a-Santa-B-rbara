@@ -6,16 +6,26 @@
   <meta name="description" content="Floristería Santa Bárbara: arreglos florales para todas las ocasiones en Heredia, Costa Rica.">
   <title>Floristería Santa Bárbara</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ESTILOS TEMPORALES (PUEDES MOVER A style.css) */
+    .banner-superior img { width: 100%; height: auto; display: block; }
+    .banner-floristeria { text-align: center; margin: 1rem 0; }
+    .banner-floristeria img { width: 100%; max-width: 600px; height: auto; }
+    .header-content { display: none; } /* Oculta logo pequeño */
+    nav { background: #fff; padding: 0.5rem 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    nav ul { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; }
+    nav ul li a { color: #d1477a; text-decoration: none; font-weight: 600; font-size: 0.95rem; }
+    nav ul li a:hover { text-decoration: underline; }
+  </style>
 </head>
 <body>
-  <header>
-    <div class="header-content">
-      <img src="https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/assets/logo.png" alt="Floristería Santa Bárbara" class="logo">
-      <p class="tasa-cambio">Tasa de cambio: $1 = ₡504</p>
-    </div>
-    <nav><ul id="menuCategorias"></ul></nav>
-  </header>
 
+  <!-- 1. BANNER SUPERIOR -->
+  <div class="banner-superior">
+    <img src="https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/assets/banner-superior.jpg" alt="Flores, expresión del sentimiento">
+  </div>
+
+  <!-- 2. CARRUSEL -->
   <section class="carousel">
     <div class="carousel-inner" id="carousel-inner"></div>
     <div class="carousel-indicators" id="carousel-indicators"></div>
@@ -25,8 +35,18 @@
     </div>
   </section>
 
+  <!-- 3. BANNER FLORISTERÍA (LOGO GRANDE) -->
+  <div class="banner-floristeria">
+    <img src="https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/assets/banner-floristeria.jpg" alt="Floristería Santa Bárbara">
+  </div>
+
+  <!-- 4. MENÚ DE CATEGORÍAS -->
+  <nav><ul id="menuCategorias"></ul></nav>
+
+  <!-- CATÁLOGO -->
   <main id="catalogo"><p style="text-align:center;padding:2rem;color:#888;">Cargando...</p></main>
 
+  <!-- LIGHTBOX -->
   <div id="lightbox" class="lightbox" onclick="cerrarLightbox()">
     <img id="lightbox-img" src="" alt="">
     <div class="lightbox-text">
@@ -35,38 +55,36 @@
     </div>
   </div>
 
+  <!-- BOTONES FLOTANTES -->
   <a href="https://wa.me/50686053613" class="whatsapp-flotante" target="_blank">WhatsApp</a>
   <button class="btn-inicio" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ Inicio</button>
 
+  <!-- FOOTER -->
   <footer>
     <div class="footer-content">
       <div class="footer-section">
         <h3>Contáctenos</h3>
-        <p>📱 WhatsApp: <a href="https://wa.me/50686053613" target="_blank" style="color:#d1477a; text-decoration:underline;">8605-3613</a></p>
-        <p>📍 Santa Bárbara, Heredia, Costa Rica<br>
-        <strong>Coordenadas: 10.0373° N, 84.1617° W</strong></p>
-        <p style="font-size:0.85rem; margin-top:0.3rem;">
-          <a href="https://waze.com/ul?q=Santa+B%C3%A1rbara,+Heredia,+Costa+Rica" target="_blank" style="color:#d1477a; margin-right:0.8rem;">🗺️ Waze</a> |
-          <a href="https://maps.app.goo.gl/Ns5gsNEV9rd7Ubfv8?g_st=aw" target="_blank" style="color:#d1477a;">📍 Google Maps</a>
+        <p>WhatsApp: <a href="https://wa.me/50686053613" target="_blank" style="color:#d1477a; text-decoration:underline;">8605-3613</a></p>
+        <p>WhatsApp: <a href="https://wa.me/50622699803" target="_blank" style="color:#d1477a; text-decoration:underline;">2269-9803</a></p>
+        <p>Santa Bárbara, Heredia, Costa Rica</p>
+        <p style="font-size:0.85rem;">
+          <a href="https://waze.com/ul?q=Santa+B%C3%A1rbara,+Heredia" target="_blank" style="color:#d1477a; margin-right:0.8rem;">Waze</a> |
+          <a href="https://maps.app.goo.gl/Ns5gsNEV9rd7Ubfv8?g_st=aw" target="_blank" style="color:#d1477a;">Google Maps</a>
         </p>
-        <p>🕒 Horario: Lunes a Sábado 8am-6pm</p>
-      </div>
-      <div class="footer-section">
-        <h3>Acerca de</h3>
-        <p>Más de 10 años creando momentos inolvidables con flores frescas.</p>
+        <p>Horario: Lunes a Sábado 8am-6pm</p>
       </div>
       <div class="footer-section">
         <h3>Redes Sociales</h3>
-        <p>📘 <a href="https://www.facebook.com/share/19t8Z9fFwM/" target="_blank" style="color:#d1477a; text-decoration:underline;">Facebook</a></p>
-        <p>📸 <a href="https://www.instagram.com/floristsantabarbara?utm_source=qr&igsh=MW42czJpcHA3eXZvZg==" target="_blank" style="color:#d1477a; text-decoration:underline;">Instagram</a></p>
-        <p>🎵 <a href="https://www.tiktok.com/@florist.santabarbara?_r=1&_t=ZM-914rEFKhTAZ" target="_blank" style="color:#d1477a; text-decoration:underline;">TikTok</a></p>
+        <p><a href="https://www.facebook.com/share/19t8Z9fFwM/" target="_blank" style="color:#d1477a;">Facebook</a></p>
+        <p><a href="https://www.instagram.com/floristsantabarbara?utm_source=qr&igsh=MW42czJpcHA3eXZvZg==" target="_blank" style="color:#d1477a;">Instagram</a></p>
+        <p><a href="https://www.tiktok.com/@florist.santabarbara?_r=1&_t=ZM-914rEFKhTAZ" target="_blank" style="color:#d1477a;">TikTok</a></p>
       </div>
       <div class="footer-section">
         <h3>Formas de Pago</h3>
-        <p>✅ SINPE Móvil</p>
-        <p>💳 Datáfono (todas las tarjetas)</p>
-        <p>🔗 Link de pago</p>
-        <p>🏦 Transferencia bancaria</p>
+        <p>SINPE Móvil</p>
+        <p>Datáfono (tarjetas)</p>
+        <p>Link de pago</p>
+        <p>Transferencia</p>
       </div>
     </div>
     <div class="footer-bottom"><p>© Floristería Santa Bárbara 2025</p></div>
@@ -88,26 +106,28 @@
         const res = await fetch('productos.json?_=' + Date.now());
         if (res.ok) return await res.json();
       } catch (e) {
-        console.warn('Error cargando JSON:', e);
+        console.warn('Error:', e);
       }
       return [];
     }
 
     function generarPedido(producto, precio) {
       const categoriaId = encodeURIComponent(producto.categoria);
-      const enlaceCatalogo = `https://krisarias1990.github.io/Florister-a-Santa-B-rbara/#${categoriaId}`;
+      const productoId = producto.id || producto.nombre.replace(/\s+/g, '_');
+      const enlaceProducto = `https://krisarias1990.github.io/Florister-a-Santa-B-rbara/#${categoriaId}_${productoId}`;
       const fotoUrl = producto.foto_full || producto.foto;
 
-      // Mensaje simple: URL de imagen + enlace al catálogo
-      const mensaje = `¡Hola! Quisiera pedir el "${producto.nombre}" de ${producto.categoria}.
+      const mensaje = `¡Hola! Quisiera pedir:
 
-Precio: ₡${precio.toLocaleString()}
+*Producto:* ${producto.nombre}
+*Precio:* ₡${precio.toLocaleString()}
+*Categoría:* ${producto.categoria}
 
-Imagen: ${fotoUrl}
+${fotoUrl}
 
-Ver en catálogo: ${enlaceCatalogo}
+[Ver producto →](${enlaceProducto})
 
-Por favor confirma disponibilidad. Gracias! 🌹`;
+Gracias!`;
 
       const url = `https://wa.me/50686053613?text=${encodeURIComponent(mensaje)}`;
       window.open(url, '_blank');
@@ -174,7 +194,10 @@ Por favor confirma disponibilidad. Gracias! 🌹`;
       document.getElementById('menuCategorias').innerHTML = categorias.map(c => `<li><a href="#${encodeURIComponent(c)}">${c}</a></li>`).join('');
 
       const grupos = {};
-      productos.forEach(p => { if (!grupos[p.categoria]) grupos[p.categoria] = []; grupos[p.categoria].push(p); });
+      productos.forEach(p => {
+        if (!grupos[p.categoria]) grupos[p.categoria] = [];
+        grupos[p.categoria].push(p);
+      });
 
       const catalogo = document.getElementById('catalogo');
       catalogo.innerHTML = Object.entries(grupos).map(([cat, prods]) => `
@@ -184,8 +207,9 @@ Por favor confirma disponibilidad. Gracias! 🌹`;
             ${prods.map(p => {
               const precio = esAlta ? p.precioAlta : p.precioBaja;
               const foto = p.foto_full || p.foto;
+              const productoId = p.id || p.nombre.replace(/\s+/g, '_');
               return `
-                <div class="producto">
+                <div class="producto" id="${encodeURIComponent(cat)}_${productoId}">
                   <img src="${foto}" alt="${p.nombre}" class="producto-img" onclick='abrirLightbox(${JSON.stringify(p).replace(/"/g, '&quot;')})' loading="lazy">
                   <h3>${p.nombre}</h3>
                   <p class="descripcion">${p.descripcion || ''}</p>
