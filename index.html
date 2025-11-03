@@ -47,7 +47,7 @@
         <strong>Coordenadas: 10.0373° N, 84.1617° W</strong></p>
         <p style="font-size:0.85rem; margin-top:0.3rem;">
           <a href="https://waze.com/ul?q=Santa+B%C3%A1rbara,+Heredia,+Costa+Rica" target="_blank" style="color:#d1477a; margin-right:0.8rem;">🗺️ Waze</a> |
-          <a href="https://www.google.com/maps?q=Santa+B%C3%A1rbara,+Heredia,+Costa+Rica" target="_blank" style="color:#d1477a;">📍 Google Maps</a>
+          <a href="https://maps.app.goo.gl/Ns5gsNEV9rd7Ubfv8?g_st=aw" target="_blank" style="color:#d1477a;">📍 Google Maps</a>
         </p>
         <p>🕒 Horario: Lunes a Sábado 8am-6pm</p>
       </div>
@@ -94,27 +94,27 @@
     }
 
     function generarPedido(producto, precio) {
-      const enlace = `https://krisarias1990.github.io/Florister-a-Santa-B-rbara/#${encodeURIComponent(producto.categoria)}`;
-      const mensaje = `
-¡Hola! Quisiera pedir:
+      const categoriaId = encodeURIComponent(producto.categoria);
+      const enlaceCatalogo = `https://krisarias1990.github.io/Florister-a-Santa-B-rbara/#${categoriaId}`;
+      const fotoUrl = producto.foto_full || producto.foto;
 
-*Producto:* ${producto.nombre}
-*Precio:* ₡${precio.toLocaleString()}
-*Categoría:* ${producto.categoria}
+      // Mensaje simple: URL de imagen + enlace al catálogo
+      const mensaje = `¡Hola! Quisiera pedir el "${producto.nombre}" de ${producto.categoria}.
 
-${producto.foto_full}
+Precio: ₡${precio.toLocaleString()}
 
-[Ver en catálogo →](${enlace})
+Imagen: ${fotoUrl}
 
-Gracias
-— Floristería Santa Bárbara`.trim();
+Ver en catálogo: ${enlaceCatalogo}
+
+Por favor confirma disponibilidad. Gracias! 🌹`;
 
       const url = `https://wa.me/50686053613?text=${encodeURIComponent(mensaje)}`;
       window.open(url, '_blank');
     }
 
     function abrirLightbox(p) {
-      document.getElementById('lightbox-img').src = p.foto_full;
+      document.getElementById('lightbox-img').src = p.foto_full || p.foto;
       document.getElementById('lightbox-nombre').textContent = p.nombre;
       document.getElementById('lightbox-categoria').textContent = p.categoria;
       document.getElementById('lightbox').classList.add('active');
