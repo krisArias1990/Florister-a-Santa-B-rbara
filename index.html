@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Floristería Santa Bárbara: arreglos florales para todas las ocasiones en Heredia, Costa Rica.">
   <title>Floristería Santa Bárbara</title>
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -41,13 +42,31 @@
     <div class="footer-content">
       <div class="footer-section">
         <h3>Contáctenos</h3>
-        <p>WhatsApp: <a href="https://wa.me/50686053613" target="_blank">8605-3613</a></p>
-        <p><a href="https://www.google.com/maps?q=Santa+Bárbara,+Heredia" target="_blank">Santa Bárbara, Heredia</a></p>
-        <p>Horario: Lunes a Sábado 8am-6pm</p>
+        <p>📱 WhatsApp: <a href="https://wa.me/50686053613" target="_blank" style="color:#d1477a; text-decoration:underline;">8605-3613</a></p>
+        <p>📍 Santa Bárbara, Heredia, Costa Rica<br>
+        <strong>Coordenadas: 10.0373° N, 84.1617° W</strong></p>
+        <p style="font-size:0.85rem; margin-top:0.3rem;">
+          <a href="https://waze.com/ul?q=Santa+B%C3%A1rbara,+Heredia,+Costa+Rica" target="_blank" style="color:#d1477a; margin-right:0.8rem;">🗺️ Waze</a> |
+          <a href="https://www.google.com/maps?q=Santa+B%C3%A1rbara,+Heredia,+Costa+Rica" target="_blank" style="color:#d1477a;">📍 Google Maps</a>
+        </p>
+        <p>🕒 Horario: Lunes a Sábado 8am-6pm</p>
+      </div>
+      <div class="footer-section">
+        <h3>Acerca de</h3>
+        <p>Más de 10 años creando momentos inolvidables con flores frescas.</p>
       </div>
       <div class="footer-section">
         <h3>Redes Sociales</h3>
-        <p>Instagram: <a href="https://instagram.com/floristeriasantabarbara" target="_blank">@floristeriasantabarbara</a></p>
+        <p>📘 <a href="https://www.facebook.com/share/19t8Z9fFwM/" target="_blank" style="color:#d1477a; text-decoration:underline;">Facebook</a></p>
+        <p>📸 <a href="https://www.instagram.com/floristsantabarbara?utm_source=qr&igsh=MW42czJpcHA3eXZvZg==" target="_blank" style="color:#d1477a; text-decoration:underline;">Instagram</a></p>
+        <p>🎵 <a href="https://www.tiktok.com/@florist.santabarbara?_r=1&_t=ZM-914rEFKhTAZ" target="_blank" style="color:#d1477a; text-decoration:underline;">TikTok</a></p>
+      </div>
+      <div class="footer-section">
+        <h3>Formas de Pago</h3>
+        <p>✅ SINPE Móvil</p>
+        <p>💳 Datáfono (todas las tarjetas)</p>
+        <p>🔗 Link de pago</p>
+        <p>🏦 Transferencia bancaria</p>
       </div>
     </div>
     <div class="footer-bottom"><p>© Floristería Santa Bárbara 2025</p></div>
@@ -83,7 +102,7 @@
 *Precio:* ₡${precio.toLocaleString()}
 *Categoría:* ${producto.categoria}
 
-[${producto.foto_full}](${enlace})
+${producto.foto_full}
 
 [Ver en catálogo →](${enlace})
 
@@ -180,13 +199,6 @@ Gracias
           </div>
         </section>
       `).join('');
-
-      document.addEventListener('click', e => {
-        if (e.target.classList.contains('producto-img')) {
-          const data = e.target.nextElementSibling?.nextElementSibling?.nextElementSibling?.nextElementSibling?.dataset?.product || e.target.getAttribute('onclick').match(/abrirLightbox\((.*)\)/)?.[1];
-          if (data) abrirLightbox(JSON.parse(data.replace(/&quot;/g, '"')));
-        }
-      });
     }
 
     document.addEventListener('DOMContentLoaded', () => {
