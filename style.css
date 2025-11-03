@@ -11,166 +11,25 @@ body {
   line-height: 1.6;
 }
 
-header {
-  background: white;
-  padding: 1rem;
-  text-align: center;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  position: sticky;
-  top: 0;
-  z-index: 100;
+/* BANNER SUPERIOR */
+.banner-superior {
+  width: 100%;
+  overflow: hidden;
 }
 
-.header-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.logo {
-  width: 150px;
+.banner-img {
+  width: 100%;
   height: auto;
-  border-radius: 8px;
+  display: block;
 }
 
-.tasa-cambio {
-  font-size: 0.85rem;
-  opacity: 0.9;
-  color: #d1477a;
-  font-weight: 600;
-}
-
-nav ul {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.6rem;
-  list-style: none;
-  margin-top: 1rem;
-  padding: 0.6rem;
-  background: #f9f0f4;
-  border-radius: 12px;
-  overflow-x: auto;
-}
-
-nav a {
-  text-decoration: none;
-  color: #d1477a;
-  font-weight: 600;
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  background: white;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-  white-space: nowrap;
-  transition: 0.3s;
-}
-
-nav a:hover {
-  background: #d1477a;
-  color: white;
-}
-
-main {
-  max-width: 1200px;
-  margin: 2rem auto;
-  padding: 0 1rem;
-}
-
-.categoria {
-  margin-bottom: 2.5rem;
-}
-
-.categoria h2 {
-  color: #d1477a;
-  margin-bottom: 1.2rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 2px solid #f0e6ed;
-  font-size: 1.6rem;
-}
-
-.productos {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 1.8rem;
-}
-
-.producto {
-  background: white;
-  border-radius: 12px;
-  padding: 1.2rem;
-  text-align: center;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  transition: transform 0.3s;
-}
-
-.producto:hover {
-  transform: translateY(-5px);
-}
-
-.producto img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  border-radius: 8px;
-  background: #f5f0f3;
-  cursor: zoom-in;
-  transition: 0.3s;
-}
-
-.producto img:hover {
-  opacity: 0.9;
-}
-
-.producto h3 {
-  margin: 0.8rem 0 0.4rem;
-  font-size: 1.1rem;
-  color: #333;
-}
-
-.descripcion {
-  font-size: 0.9rem;
-  color: #666;
-  margin-bottom: 0.6rem;
-  min-height: 2.2rem;
-}
-
-.precio {
-  font-size: 1.3rem;
-  color: #d1477a;
-  font-weight: bold;
-  margin: 0.5rem 0;
-}
-
-.btn-pedir {
-  background: #d1477a;
-  color: white;
-  border: none;
-  padding: 0.6rem;
-  border-radius: 8px;
-  cursor: pointer;
-  width: 100%;
-  margin-top: 0.6rem;
-  font-weight: bold;
-  font-size: 0.95rem;
-  transition: 0.3s;
-}
-
-.btn-pedir:hover {
-  background: #b03560;
-}
-
+/* CARRUSEL */
 .carousel {
   position: relative;
   width: 100%;
   height: 300px;
   overflow: hidden;
-  margin: 2rem 0;
-  background: #f9f0f4;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  margin: 0;
 }
 
 .carousel-inner {
@@ -216,11 +75,6 @@ main {
   font-weight: bold;
 }
 
-.contacto-banner {
-  font-weight: 600;
-  font-size: 1rem;
-}
-
 .carousel-indicators {
   position: absolute;
   bottom: 15px;
@@ -252,7 +106,6 @@ main {
   display: flex;
   justify-content: space-between;
   transform: translateY(-50%);
-  pointer-events: none;
   z-index: 10;
 }
 
@@ -265,7 +118,6 @@ main {
   font-size: 1.5rem;
   cursor: pointer;
   border-radius: 50%;
-  pointer-events: all;
   transition: 0.3s;
 }
 
@@ -276,6 +128,138 @@ main {
 .carousel-prev { margin-left: 15px; }
 .carousel-next { margin-right: 15px; }
 
+/* BANNER FLORISTERÍA */
+.banner-floristeria {
+  text-align: center;
+  margin: 1rem 0;
+  padding: 1rem;
+}
+
+.banner-flor-img {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+}
+
+/* NAV CATEGORÍAS */
+.nav-categorias {
+  background: #f9f0f4;
+  padding: 0.5rem 0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.nav-categorias ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-categorias a {
+  color: #d1477a;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  background: white;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  transition: 0.3s;
+}
+
+.nav-categorias a:hover {
+  background: #d1477a;
+  color: white;
+}
+
+/* CATÁLOGO */
+main {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.categoria {
+  margin-bottom: 2.5rem;
+}
+
+.categoria h2 {
+  color: #d1477a;
+  margin-bottom: 1.2rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #f0e6ed;
+  font-size: 1.6rem;
+}
+
+.productos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.8rem;
+}
+
+.producto {
+  background: white;
+  border-radius: 12px;
+  padding: 1.2rem;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: transform 0.3s;
+}
+
+.producto:hover {
+  transform: translateY(-5px);
+}
+
+.producto img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  background: #f5f0f3;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.producto h3 {
+  margin: 0.8rem 0 0.4rem;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.descripcion {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 0.6rem;
+  min-height: 2.2rem;
+}
+
+.precio {
+  font-size: 1.3rem;
+  color: #d1477a;
+  font-weight: bold;
+  margin: 0.5rem 0;
+}
+
+.btn-pedir {
+  background: #d1477a;
+  color: white;
+  border: none;
+  padding: 0.6rem;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 0.6rem;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.btn-pedir:hover {
+  background: #b03560;
+}
+
+/* LIGHTBOX */
 .lightbox {
   display: none;
   position: fixed;
@@ -316,11 +300,7 @@ main {
   font-size: 1.4rem;
 }
 
-.lightbox-text p {
-  margin: 0;
-  color: #ddd;
-}
-
+/* BOTONES FLOTANTES */
 .whatsapp-flotante {
   position: fixed;
   bottom: 20px;
@@ -337,7 +317,6 @@ main {
   font-size: 1.8rem;
   box-shadow: 0 4px 12px rgba(37,211,102,0.4);
   z-index: 100;
-  font-weight: bold;
 }
 
 .btn-inicio {
@@ -352,9 +331,9 @@ main {
   cursor: pointer;
   font-weight: bold;
   z-index: 100;
-  box-shadow: 0 4px 12px rgba(209,71,122,0.4);
 }
 
+/* FOOTER */
 footer {
   background: #2e8b57;
   color: white;
@@ -376,9 +355,9 @@ footer {
   font-size: 1.2rem;
 }
 
-.footer-section p {
-  margin-bottom: 0.5rem;
-  font-size: 0.9rem;
+.footer-section a {
+  color: #d1477a;
+  text-decoration: underline;
 }
 
 .footer-bottom {
@@ -386,25 +365,32 @@ footer {
   margin-top: 2rem;
   padding-top: 1rem;
   border-top: 1px solid rgba(255,255,255,0.2);
-  font-size: 0.9rem;
-  color: #ccc;
 }
 
+/* RESPONSIVE */
 @media (max-width: 768px) {
   .carousel { height: 220px; }
-  .carousel-caption h3 { font-size: 1.3rem; }
-  .whatsapp-flotante { width: 55px; height: 55px; font-size: 1.6rem; }
-  .btn-inicio { bottom: 80px; right: 10px; }
-  .logo { width: 120px; }
+  .nav-categorias ul { gap: 0.5rem; }
+  .nav-categorias a { padding: 0.4rem 0.8rem; font-size: 0.9rem; }
 }
+</style>
+</head>
+<body>
+  <!-- 1. BANNER SUPERIOR -->
+  <header class="banner-superior">
+    <img src="https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/assets/banner-superior.jpg" alt="Flores, expresión del sentimiento" class="banner-img">
+  </header>
 
-.whatsapp-flotante::before {
-  content: "💬";
-  font-size: 1.8rem;
-}
+  <!-- 2. CARRUSEL -->
+  <section class="carousel">
+    <div class="carousel-inner" id="carousel-inner"></div>
+    <div class="carousel-indicators" id="carousel-indicators"></div>
+    <div class="carousel-controls">
+      <button class="carousel-prev" onclick="showSlide(currentIndex - 1)">❮</button>
+      <button class="carousel-next" onclick="showSlide(currentIndex + 1)">❯</button>
+    </div>
+  </section>
 
-/* Asegura que emojis se vean en todos los navegadores */
-.whatsapp-flotante {
-  font-family: 'Segoe UI Emoji', 'Apple Color Emoji', sans-serif;
-}
-
+  <!-- 3. BANNER FLORISTERÍA -->
+  <section class="banner-floristeria">
+    <img src="https://raw.githubusercontent
