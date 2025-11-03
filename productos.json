@@ -6,7 +6,6 @@
     "categoria": "Amor y Amistad",
     "precioBaja": 35783,
     "precioAlta": 69683,
-    "foto_thumb": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/amor-y-amistad/thumb/IMG_5819_thumb.jpg",
     "foto_full": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/amor-y-amistad/full/IMG_5819.jpeg",
     "disponible": true
   },
@@ -17,7 +16,6 @@
     "categoria": "Arreglos Premium",
     "precioBaja": 20000,
     "precioAlta": 35000,
-    "foto_thumb": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/Arreglos%20Premium/thumb/50.png",
     "foto_full": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/Arreglos%20Premium/full/50.png",
     "disponible": true
   },
@@ -28,7 +26,6 @@
     "categoria": "Arreglos Premium",
     "precioBaja": 15000,
     "precioAlta": 25000,
-    "foto_thumb": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/Arreglos%20Premium/thumb/49.png",
     "foto_full": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/Arreglos%20Premium/full/49.png",
     "disponible": true
   },
@@ -39,7 +36,6 @@
     "categoria": "Arreglos Premium",
     "precioBaja": 30000,
     "precioAlta": 45000,
-    "foto_thumb": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/Arreglos%20Premium/thumb/47.png",
     "foto_full": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/Arreglos%20Premium/full/47.png",
     "disponible": true
   },
@@ -50,7 +46,6 @@
     "categoria": "Baby Shower",
     "precioBaja": 8000,
     "precioAlta": 12000,
-    "foto_thumb": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/Baby%20shower/thumb/cdb5301e-5d1d-40ff-bab0-2897452b8bf3_thumb.jpg",
     "foto_full": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/Baby%20shower/full/cdb5301e-5d1d-40ff-bab0-2897452b8bf3.jpg",
     "disponible": true
   },
@@ -61,7 +56,6 @@
     "categoria": "Bodas",
     "precioBaja": 25000,
     "precioAlta": 35000,
-    "foto_thumb": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/bodas/thumb/10_thumb.png",
     "foto_full": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/bodas/full/10.png",
     "disponible": true
   },
@@ -72,7 +66,6 @@
     "categoria": "Cumpleaños y Aniversarios",
     "precioBaja": 10000,
     "precioAlta": 15000,
-    "foto_thumb": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/cumpleanos/thumb/4_thumb.png",
     "foto_full": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/cumpleanos/full/4.png",
     "disponible": true
   },
@@ -83,7 +76,6 @@
     "categoria": "Día de la Madre",
     "precioBaja": 18000,
     "precioAlta": 28000,
-    "foto_thumb": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/arreglos/thumb/IMG_5825_thumb.jpeg",
     "foto_full": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/arreglos/full/IMG_5825.jpeg",
     "disponible": true
   },
@@ -94,7 +86,6 @@
     "categoria": "Ramos",
     "precioBaja": 9000,
     "precioAlta": 14000,
-    "foto_thumb": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/ramos/thumb/IMG_5816_thumb.jpeg",
     "foto_full": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/ramos/full/IMG_5816.jpeg",
     "disponible": true
   },
@@ -105,7 +96,6 @@
     "categoria": "Ramos",
     "precioBaja": 22000,
     "precioAlta": 32000,
-    "foto_thumb": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/ramos/thumb/IMG_5816_thumb.jpeg",
     "foto_full": "https://raw.githubusercontent.com/krisArias1990/Florister-a-Santa-B-rbara/main/flores/ramos/full/IMG_5816.jpeg",
     "disponible": true
   }
